@@ -1,16 +1,23 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Offline — Bebida Selada®</title>
-    <link rel="stylesheet" href="css/styles.css" />
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <meta name="theme-color" content="#1B424E" />
   </head>
-  <body class="grid min-h-screen place-items-center bg-[var(--bg)] text-[var(--ink-90)]">
-    <div class="rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-6 shadow-xl max-w-md text-center">
-      <h1 class="text-2xl font-bold text-[var(--ink-95)]">Você está offline</h1>
-      <p class="mt-2 text-[var(--ink-75)]">Conteúdo principal indisponível. Verifique sua conexão e tente novamente.</p>
-      <a href="/index.html" class="btn-primary mt-4 inline-block">Voltar para a página inicial</a>
-    </div>
+  <body class="bg-[var(--bg)] text-[var(--ink-90)]">
+    <main class="min-h-screen grid place-items-center p-6">
+      <div class="max-w-xl w-full rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-6 shadow-xl text-center">
+        <h1 class="text-2xl font-extrabold text-[var(--ink-95)]">Você está offline</h1>
+        <p class="mt-2 text-[var(--ink-80)]">Sem conexão com a internet. Alguns recursos podem não funcionar agora.</p>
+        <p class="mt-1 text-[var(--ink-75)]">Assim que a conexão voltar, o aplicativo retomará normalmente.</p>
+        <div class="mt-5">
+          <a href="/index.html" class="btn-ghost">Tentar novamente</a>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

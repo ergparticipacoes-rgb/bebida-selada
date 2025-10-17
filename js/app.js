@@ -234,23 +234,67 @@ if("serviceWorker" in navigator){
 // KPI reveal ensure works on mobile
 document.querySelectorAll('.kpi').forEach(el=>{ el.style.opacity=1; });
 
-// PWA install (mobile)
+// PWA install (mobile) — Android prompt + iOS fallback + persistence
 let deferredPrompt;
+const pwaBanner = document.getElementById('pwaBanner');
+const pwaInstallBtn = document.getElementById('pwaInstall');
+const pwaDismissBtn = document.getElementById('pwaDismiss');
+
+function isStandalone(){
+  return window.matchMedia('(display-mode: standalone)').matches || (window.navigator && window.navigator.standalone === true);
+}
+function isIOS(){
+  const ua = window.navigator.userAgent;
+  const isAppleMobile = /iPhone|iPad|iPod/i.test(ua);
+  const isTouchMac = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+  return isAppleMobile || isTouchMac;
+}
+function showBanner(){
+  if(!pwaBanner) return;
+  if(localStorage.getItem('pwaDismissed') === '1') return;
+  if(isStandalone()) return; // already installed
+  pwaBanner.classList.remove('hidden');
+}
+
 window.addEventListener('beforeinstallprompt', (e)=>{
   e.preventDefault();
   deferredPrompt = e;
-  const banner = document.getElementById('pwaBanner');
-  if (banner) banner.classList.remove('hidden');
+  // Android/Chromium path: we can prompt, so show banner
+  showBanner();
 });
-document.getElementById('pwaDismiss')?.addEventListener('click',()=>{
-  document.getElementById('pwaBanner')?.classList.add('hidden');
+
+// iOS Safari does not fire beforeinstallprompt
+document.addEventListener('DOMContentLoaded', ()=>{
+  if(isIOS() && !isStandalone()){
+    // Fallback banner with instructions
+    if(pwaInstallBtn) pwaInstallBtn.textContent = 'Como instalar';
+    showBanner();
+  }
 });
-document.getElementById('pwaInstall')?.addEventListener('click', async ()=>{
-  if(!deferredPrompt) return;
+
+// Dismiss persistence
+pwaDismissBtn?.addEventListener('click',()=>{
+  localStorage.setItem('pwaDismissed','1');
+  pwaBanner?.classList.add('hidden');
+});
+
+// Install / Instructions handler
+pwaInstallBtn?.addEventListener('click', async ()=>{
+  if(isIOS() || !deferredPrompt){
+    // Simple inline instructions for iOS (no native prompt)
+    alert('Para instalar no iPhone/iPad:\n\n1) Toque em Compartilhar (ícone quadrado com seta)\n2) Escolha “Adicionar à Tela de Início”\n3) Confirme o nome e toque em Adicionar');
+    return;
+  }
   deferredPrompt.prompt();
   await deferredPrompt.userChoice;
   deferredPrompt = null;
-  document.getElementById('pwaBanner')?.classList.add('hidden');
+  pwaBanner?.classList.add('hidden');
+});
+
+// When app gets installed, hide banner and persist
+window.addEventListener('appinstalled', ()=>{
+  localStorage.setItem('pwaInstalled','1');
+  pwaBanner?.classList.add('hidden');
 });
 
 // Theme toggle sticky on mobile
