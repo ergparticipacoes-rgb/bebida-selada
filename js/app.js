@@ -239,8 +239,7 @@ let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e)=>{
   e.preventDefault();
   deferredPrompt = e;
-  const banner = document.getElementById('pwaBanner');
-  if (banner) banner.classList.remove('hidden');
+  if (typeof a2hsEligible !== 'undefined' && a2hsEligible) { a2hsShow(); }
 });
 document.getElementById('pwaDismiss')?.addEventListener('click',()=>{
   document.getElementById('pwaBanner')?.classList.add('hidden');
@@ -258,3 +257,63 @@ themeToggle?.classList.add('theme-toggle-mobile');
 
 // Make demo QR open the verification modal as well
 document.querySelector('.qr-demo')?.addEventListener('click', (e)=>{ e.preventDefault(); openVerifyModal(); });
+
+/* ---- A2HS Banner (PWA Add to Home Screen) ---- */
+let a2hsInteractions = 0;
+let a2hsEligible = false;
+// Reuse existing deferredPrompt variable if present
+// Show custom banner only on mobile and when eligible
+function a2hsIsMobile(){
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 768;
+}
+function a2hsSnoozed(){
+  try{ const until = localStorage.getItem('a2hs_snooze_until'); return until && Date.now() < Number(until); }catch(_){ return false; }
+}
+function a2hsInstalled(){
+  try{ return localStorage.getItem('a2hs_installed') === 'true'; }catch(_){ return false; }
+}
+function a2hsShow(){
+  if(!a2hsIsMobile() || a2hsSnoozed() || a2hsInstalled() || !deferredPrompt) return false;
+  const el = document.getElementById('a2hsBanner'); if(!el) return;
+  el.classList.remove('hidden');
+  setTimeout(()=>document.getElementById('a2hsInstall')?.focus(), 50);
+  return true;
+}
+function a2hsHide(){ document.getElementById('a2hsBanner')?.classList.add('hidden'); }
+
+function a2hsSchedule(){
+  let shown = false;
+  const tryShow = ()=>{
+    a2hsEligible = true;
+    if(!shown){ shown = a2hsShow(); }
+  };
+  const onScrollOnce = ()=>{ a2hsInteractions++; if(a2hsInteractions >= 2){ tryShow(); } };
+  const onClickOnce = ()=>{ a2hsInteractions++; if(a2hsInteractions >= 2){ tryShow(); } };
+  window.addEventListener('scroll', onScrollOnce, {passive:true, once:true});
+  window.addEventListener('click', onClickOnce, {once:true});
+  setTimeout(tryShow, 15000);
+}
+window.addEventListener('load', a2hsSchedule);
+
+// second handler not needed; first one above already defers prompt
+
+document.getElementById('a2hsInstall')?.addEventListener('click', async ()=>{
+  if(!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const choice = await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  a2hsHide();
+  if(choice.outcome === 'accepted'){
+    try{ localStorage.setItem('a2hs_installed','true'); }catch(_){ }
+  }else{
+    try{ localStorage.setItem('a2hs_snooze_until', String(Date.now() + 7*24*60*60*1000)); }catch(_){ }
+  }
+});
+
+document.getElementById('a2hsLater')?.addEventListener('click', ()=>{
+  a2hsHide();
+  try{ localStorage.setItem('a2hs_snooze_until', String(Date.now() + 7*24*60*60*1000)); }catch(_){ }
+});
+
+// Close on Esc
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') a2hsHide(); });
