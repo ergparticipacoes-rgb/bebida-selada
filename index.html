@@ -44,12 +44,12 @@
     </script>
   </head>
   <body class="bg-[var(--bg)] text-[var(--ink-90)] selection:bg-yellow-200/60">
-    <a class=\"skip-link\" href=\"#conteudo\">Pular para o conteúdo</a>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <div id="scrollProgress" class="fixed left-0 top-0 h-1.5 bg-gold z-[70]" style="width:0"></div>
 
     <header class="fixed inset-x-0 top-0 z-50">
       <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(1200px_420px_at_50%_-150px,var(--smoke-10),transparent_60%)]"></div>
-      <nav class="relative container mx-auto px-4 py-4 md:py-5 flex items-center justify-between" role=\"navigation\" aria-label=\"Principal\">
+      <nav class="relative container mx-auto px-4 py-4 md:py-5 flex items-center justify-between" role="navigation" aria-label="Principal">
         <a href="#hero" class="font-semibold tracking-tight text-gold text-lg md:text-xl">Bebida Selada®</a>
         <div class="flex items-center gap-3">
           <button id="themeToggle" class="inline-flex items-center gap-2 text-white/90 hover:text-white rounded-full px-3 py-1 border border-white/20"><span>☀️/🌙</span><span class="text-sm">Tema</span></button>
@@ -63,6 +63,8 @@
         </ul>
       </nav>
     </header>
+
+    <div id="conteudo" tabindex="-1"></div>
 
     <section id="hero" class="relative pt-28 md:pt-36 pb-16 md:pb-24">
       <div class="absolute inset-0 -z-10 bg-[linear-gradient(180deg,var(--hero-top),var(--bg))]"></div>
@@ -145,7 +147,7 @@
 
     <section id="como-funciona" class="py-16 md:py-20 bg-[var(--bg)]">
   <div class="container mx-auto px-4">
-    <h2 class="text-2xl md:4xl font-extrabold text-[var(--ink-95)] reveal">Como funciona</h2>
+    <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)] reveal">Como funciona</h2>
     <div class="mt-8 grid md:grid-cols-4 gap-6">
       <div class="step reveal"><div class="step-num">1</div><h4 class="step-title">Adesão</h4><p>Escolha um plano e receba o kit digital.</p></div>
       <div class="step reveal"><div class="step-num">2</div><h4 class="step-title">Cadastro</h4><p>Registre lotes e dados auditáveis.</p></div>
@@ -182,7 +184,7 @@
             <div class="mt-7 flex flex-col gap-3"><a href="#contato" class="btn-primary">Assinar</a><button class="btn-ghost btn-plan-details" data-plan="pro">Ver detalhes</button></div>
           </div>
           <div class="plan-card plan-card--proplus reveal">
-            <h3 class="font-bold text-[var(--ink-95)]">Pro+</strong> (sob consulta)</p>
+            <h3 class="font-bold text-[var(--ink-95)]">Pro+ <span class="text-sm font-normal text-[var(--ink-70)]">(sob consulta)</span></h3>
             <ul class="mt-5 space-y-2 text-[var(--ink-80)] text-sm">
               <li>• Lotes ilimitados</li><li>• Auditoria contínua</li><li>• Suporte dedicado e SLA</li><li>• Integrações personalizadas</li>
             </ul>
