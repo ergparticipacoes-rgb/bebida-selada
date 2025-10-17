@@ -199,3 +199,18 @@ body{background:var(--bg); color:var(--ink-90);}
 .halo-petro:hover{box-shadow:0 0 0 6px rgba(27,66,78,.08)}
 
 h2.petro{color:var(--petro)}
+
+/* === v2.6.4 Visual+ — Footer, Contrast & Spacing === */
+:root {
+  /* refine leve dos valores “ink” claros */
+  --ink-75: #32414b; /* antes #3b4b55 */
+  --ink-80: #263641; /* antes #2d3c46 */
+}
+
+/* seções respiram mais */
+section { padding-top: 5rem; padding-bottom: 5rem; }
+
+/* Rodapé com alto contraste e petro profundo */
+footer { background: #12242A; color: #EAEFF2; }
+footer a { color: #EAEFF2; }
+footer a:hover { opacity: .9; text-decoration: underline; text-underline-offset: 3px; }
