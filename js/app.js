@@ -16,7 +16,11 @@ const wait = (ms)=>new Promise(r=>setTimeout(r,ms));
 /* Menu */
 const menuBtn=document.getElementById("menuBtn");
 const menuList=document.getElementById("menuList");
-menuBtn?.addEventListener("click",()=>menuList.classList.toggle("hidden"));
+menuBtn?.addEventListener("click",()=>{
+  const expanded=menuBtn.getAttribute("aria-expanded")==="true";
+  menuBtn.setAttribute("aria-expanded", String(!expanded));
+  menuList?.classList.toggle("hidden");
+});
 
 /* Theme toggle (persisted) */
 const themeToggle=document.getElementById("themeToggle");
@@ -200,14 +204,30 @@ document.querySelectorAll(".btn-plan-details").forEach((btn)=>{
     if(planPrice){ planPrice.innerHTML=p.price.from?`<span class="line-through mr-2">${p.price.from}</span> <strong>${p.price.now}</strong>`:`<strong>${p.price.now}</strong>`; }
     if(planBenefits){ planBenefits.innerHTML=p.benefits.map((b)=>`<li>• ${b}</li>`).join(""); }
     planModal.classList.add("active"); planModal.classList.remove("invisible","opacity-0");
-    planTalk?.addEventListener("click",()=>window.open("https://wa.me/5513982259477","_blank"),{once:true});
+    planTalk?.addEventListener("click",()=>{ const w=window.open("https://wa.me/5513982259477","_blank","noopener,noreferrer"); if(w) w.opener=null; },{once:true});
   });
 });
 closePlanModal?.addEventListener("click",()=>{ planModal?.classList.add("opacity-0"); setTimeout(()=>planModal?.classList.add("invisible"),200); planModal?.classList.remove("active"); });
 planModal?.addEventListener("click",(e)=>{ if(e.target===planModal){ planModal.classList.add("opacity-0"); setTimeout(()=>planModal.classList.add("invisible"),200); planModal.classList.remove("active"); }});
 
-/* SW */
-if("serviceWorker" in navigator){ navigator.serviceWorker.register("/service-worker.js").catch(()=>{}); }
+/* SW - auto update with soft reload */
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("/service-worker.js").then((reg)=>{
+    if(reg.waiting){ reg.waiting.postMessage("skipWaiting"); }
+    reg.addEventListener("updatefound",()=>{
+      const sw=reg.installing;
+      sw?.addEventListener("statechange",()=>{
+        if(sw.state==="installed" && reg.waiting){
+          reg.waiting.postMessage("skipWaiting");
+        }
+      });
+    });
+  }).catch(()=>{});
+  let refreshing=false;
+  navigator.serviceWorker.addEventListener("controllerchange",()=>{
+    if(refreshing) return; refreshing=true; window.location.reload();
+  });
+}
 
 
 /* v3.2 Premium JS */
