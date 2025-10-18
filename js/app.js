@@ -308,10 +308,13 @@ function runCheersAnimation() {
   const ctx = canvas.getContext("2d");
   const w = canvas.width, h = canvas.height;
   let t = 0;
+
+  // Carrega a imagem e só inicia quando estiver pronta
   const img = new Image();
   img.src = "img/brinde-digital-tacas.png";
+  img.onload = () => draw(); // só desenha após carregar
 
-  // Áudio sutil de tilintar
+  // Som sutil de tilintar
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
   let soundPlayed = false;
   function playCheersSound() {
@@ -336,8 +339,8 @@ function runCheersAnimation() {
     ctx.save();
     ctx.translate(w / 2, h / 2 + 20);
 
-    // Movimento senoidal das taças
-    const angle = Math.sin(t / 45) * 0.15; // ângulo de balanço
+    // Movimento das taças (balanço suave)
+    const angle = Math.sin(t / 45) * 0.15;
     ctx.rotate(-angle);
     ctx.drawImage(img, -110, -110, 220, 220);
     ctx.restore();
@@ -353,7 +356,7 @@ function runCheersAnimation() {
       ctx.fill();
     }
 
-    // Pulsação dourada após toque
+    // Brilho dourado e som no toque
     if (Math.abs(Math.sin(t / 45)) < 0.05) {
       playCheersSound();
       const g = ctx.createRadialGradient(w / 2, h / 2, 10, w / 2, h / 2, 120);
@@ -366,12 +369,4 @@ function runCheersAnimation() {
     t++;
     requestAnimationFrame(draw);
   }
-
-  draw();
 }
-
-// Theme toggle sticky on mobile
-themeToggle?.classList.add('theme-toggle-mobile');
-
-// Make demo QR open the verification modal as well
-document.querySelector('.qr-demo')?.addEventListener('click', (e)=>{ e.preventDefault(); openVerifyModal(); });
