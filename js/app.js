@@ -126,37 +126,48 @@ function getAuditData(){
 async function runVerification(){
   flashSweep();
   stateChecking?.classList.remove("hidden");
-  await wait(300); 
-  await playScanSound(); 
+  stateResult?.classList.add("hidden");
+
+  await wait(300);
+  await playScanSound();
   await wait(2400);
 
   const d = getAuditData();
 
-  // Garante que os elementos sejam lidos mesmo se estiverem ocultos
-  const resNome = document.getElementById("resNome");
-  const resCidade = document.getElementById("resCidade");
-  const resLote = document.getElementById("resLote");
-  const resAuditor = document.getElementById("resAuditor");
-  const resData = document.getElementById("resData");
+  // Verifica e aplica dados apenas quando o modal está visível
+  requestAnimationFrame(() => {
+    const applyData = () => {
+      const resNome = document.getElementById("resNome");
+      const resCidade = document.getElementById("resCidade");
+      const resLote = document.getElementById("resLote");
+      const resAuditor = document.getElementById("resAuditor");
+      const resData = document.getElementById("resData");
 
-  if(resNome) resNome.textContent = d.nome;
-  if(resCidade) resCidade.textContent = d.cidade;
-  if(resLote) resLote.textContent = d.lote;
-  if(resAuditor) resAuditor.textContent = d.auditor;
-  if(resData) resData.textContent = d.data;
+      if (resNome && resCidade && resLote && resAuditor && resData) {
+        resNome.textContent = d.nome;
+        resCidade.textContent = d.cidade;
+        resLote.textContent = d.lote;
+        resAuditor.textContent = d.auditor;
+        resData.textContent = d.data;
 
-  // Exibe o resultado
-  stateChecking?.classList.add("hidden");
-  stateResult?.classList.remove("hidden");
+        stateChecking?.classList.add("hidden");
+        stateResult?.classList.remove("hidden");
 
-  // Microanimação de entrada no check
-  const check = stateResult?.querySelector('.h-14.w-14');
-  if (check) {
-    check.animate(
-      [{ transform: "scale(0.6)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
-      { duration: 400, easing: "ease-out" }
-    );
-  }
+        // Animação de entrada no check
+        const check = stateResult?.querySelector('.h-14.w-14');
+        if (check) {
+          check.animate(
+            [{ transform: "scale(0.6)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
+            { duration: 400, easing: "ease-out" }
+          );
+        }
+      } else {
+        // tenta novamente até carregar os elementos (seguro)
+        setTimeout(applyData, 100);
+      }
+    };
+    applyData();
+  });
 }
 
 /* === Compartilhar === */
