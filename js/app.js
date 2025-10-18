@@ -52,7 +52,7 @@ const io=new IntersectionObserver((entries)=>{
 },{threshold:.14});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 
-/* Modal de verificação — v3.3 aprimorado (multi-QR e UX refinado) */
+/* Modal de verificação — v3.3 aprimorado (multi-QR + UX refinado) */
 const verifyModal = document.getElementById("verifyModal");
 const closeModal = document.getElementById("closeModal");
 const stateChecking = document.getElementById("stateChecking");
@@ -64,13 +64,68 @@ const btnCompartilhar = document.getElementById("btnCompartilhar");
 const confettiCanvas = document.getElementById("confetti");
 const downloadBadge = document.getElementById("downloadBadge");
 
-/* === MULTI-QR SUPPORT === */
-/* Permite que qualquer botão ou QR com .qrButton (ou o antigo .qr-demo) abra o modal */
+/* === FUNÇÕES PRINCIPAIS === */
+function openVerifyModal() {
+  if (!verifyModal) return;
+  verifyModal.classList.add("active");
+  verifyModal.classList.remove("invisible", "opacity-0");
+  stateChecking?.classList.remove("hidden");
+  stateResult?.classList.add("hidden");
+  stateReward?.classList.add("hidden");
+  document.body.style.overflow = "hidden"; // bloqueia rolagem
+  runVerification();
+}
+
+function hideVerifyModal() {
+  if (!verifyModal) return;
+  verifyModal.classList.add("opacity-0");
+  setTimeout(() => verifyModal.classList.add("invisible"), 200);
+  verifyModal.classList.remove("active");
+  document.body.style.overflow = ""; // restaura rolagem
+}
+
+/* === EVENTOS MULTI-QR === */
 document.querySelectorAll(".qrButton, #qrButton, .qr-demo").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     openVerifyModal();
   });
+});
+
+/* === CONTROLES DO MODAL === */
+closeModal?.addEventListener("click", hideVerifyModal);
+verifyModal?.addEventListener("click", (e) => {
+  if (e.target === verifyModal) hideVerifyModal();
+});
+addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && verifyModal?.classList.contains("active")) hideVerifyModal();
+});
+
+/* === AÇÕES INTERNAS === */
+btnBrinde?.addEventListener("click", async () => {
+  if (!stateResult || !stateReward) return;
+  stateResult.classList.add("hidden");
+  stateReward.classList.remove("hidden");
+  runConfetti(confettiCanvas);
+  const dataUrl = await generateBadge();
+  if (downloadBadge) downloadBadge.setAttribute("href", dataUrl);
+});
+
+backToResult?.addEventListener("click", () => {
+  stateReward?.classList.add("hidden");
+  stateResult?.classList.remove("hidden");
+});
+
+btnCompartilhar?.addEventListener("click", async () => {
+  const text = "Selo verificado e aprovado na Bebida Selada® — Confiança que se vê.";
+  try {
+    if (navigator.share) {
+      await navigator.share({ title: "Bebida Selada®", text, url: location.href });
+    } else if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(`${text} ${location.href}`);
+      alert("Texto copiado para compartilhar.");
+    }
+  } catch (_) {}
 });
 
 function openVerifyModal(){
