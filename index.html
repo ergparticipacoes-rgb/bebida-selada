@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Bebida Selada® — Confiança que se vê</title>
     <meta name="theme-color" content="#1B424E" />
-    <link rel="manifest" href="manifest.json" />
-    
-<meta name="description" content="Sistema oficial de certificação e rastreabilidade digital de bebidas — confiança que se vê, transparência auditável e proteção ao consumidor." />
+    <meta name="description" content="Sistema oficial de certificação e rastreabilidade digital de bebidas — confiança que se vê, transparência auditável e proteção ao consumidor." />
     <link rel="canonical" href="https://bebidaselada.com.br/" />
     <meta property="og:title" content="Bebida Selada® — Confiança que se vê" />
     <meta property="og:description" content="Certificação digital de bebidas com QR verificável em tempo real. Valorize seu negócio, proteja seu cliente." />
@@ -29,7 +27,7 @@
     }
     </script>
     <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
-<link rel="icon" href="img/favicon.ico" />
+    <link rel="icon" href="img/favicon.ico" />
     <link rel="stylesheet" href="css/styles.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -40,9 +38,15 @@
           }
         }
       };
-      (function(){try{const t=localStorage.getItem("bs_theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(_){}})();
+      (function(){
+        try{
+          const t=localStorage.getItem("bs_theme");
+          if(t)document.documentElement.setAttribute("data-theme",t);
+        }catch(_){}
+      })();
     </script>
   </head>
+
   <body class="bg-[var(--bg)] text-[var(--ink-90)] selection:bg-yellow-200/60">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <div id="scrollProgress" class="fixed left-0 top-0 h-1.5 bg-gold z-[70]" style="width:0"></div>
@@ -52,10 +56,13 @@
       <nav class="relative container mx-auto px-4 py-4 md:py-5 flex items-center justify-between" role="navigation" aria-label="Principal">
         <a href="#hero" class="font-semibold tracking-tight text-gold text-lg md:text-xl">Bebida Selada®</a>
         <div class="flex items-center gap-3">
-          <button id="themeToggle" class="inline-flex items-center gap-2 text-white/90 hover:text-white rounded-full px-3 py-1 border border-white/20" aria-pressed="false"><span>☀️/🌙</span><span class="text-sm">Tema</span></button>
+          <button id="themeToggle" class="inline-flex items-center gap-2 text-white/90 hover:text-white rounded-full px-3 py-1 border border-white/20" aria-pressed="false">
+            <span>☀️/🌙</span><span class="text-sm">Tema</span>
+          </button>
           <button id="menuBtn" class="md:hidden text-white" aria-label="Abrir menu" aria-controls="menuList" aria-expanded="false">☰</button>
         </div>
-        <ul id="menuList" class="hidden md:flex gap-6"><li><a href="#como-funciona" class="nav-link">Como funciona</a></li>
+        <ul id="menuList" class="hidden md:flex gap-6">
+          <li><a href="#como-funciona" class="nav-link">Como funciona</a></li>
           <li><a href="#planos" class="nav-link">Planos</a></li>
           <li><a href="#representantes" class="nav-link">Representantes</a></li>
           <li><a href="#governo" class="nav-link">Governo & Parcerias</a></li>
@@ -66,57 +73,47 @@
 
     <main id="conteudo" tabindex="-1">
 
-    <section id="hero" class="relative pt-28 md:pt-36 pb-16 md:pb-24">
-      <div class="absolute inset-0 -z-10 bg-[linear-gradient(180deg,var(--hero-top),var(--bg))]"></div>
-      <div class="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-        <div class="hero-left-card bg-[var(--panel)]/80 rounded-2xl p-6 md:p-8 shadow-xl border border-[var(--stroke)] reveal">
-          <p class="text-[var(--lead)] font-semibold mb-2">Confiança que se vê</p>
-          <h1 class="text-3xl md:text-5xl leading-tight font-extrabold text-[var(--ink-95)]">A tecnologia que <span class="text-[var(--gold-90)]">protege</span> o que você bebe —
-            <span class="block mt-1">e transforma <span class="underline decoration-[var(--gold-60)] underline-offset-4">confiança</span> em valor para seu negócio.</span></h1>
-          <p class="mt-4 md:mt-5 text-[var(--ink-80)]"><strong>Certifique seu estabelecimento com o selo oficial Bebida Selada®.</strong><br/>
-  Ganhe credibilidade imediata, fidelize clientes e entre para a Rede Segura Nacional.</p>
-          <div class="mt-6 text-base md:text-lg tracking-wide text-[var(--petro)] flex items-center gap-2 justify-center text-center">
-            <span class="inline-block h-2 w-2 rounded-full bg-[var(--gold-70)] glow"></span><span><span class="tac-strong">Tecnologia • Auditoria • Confiança</span></span>
+      <!-- HERO -->
+      <section id="hero" class="relative pt-28 md:pt-36 pb-16 md:pb-24">
+        <div class="absolute inset-0 -z-10 bg-[linear-gradient(180deg,var(--hero-top),var(--bg))]"></div>
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+          
+          <!-- LADO ESQUERDO -->
+          <div class="hero-left-card bg-[var(--panel)]/85 rounded-2xl p-6 md:p-8 shadow-xl border border-[var(--stroke)] reveal">
+            <p class="text-[var(--lead)] font-semibold mb-2">Confiança que se vê</p>
+            <h1 class="text-3xl md:text-5xl leading-tight font-extrabold text-[var(--ink-95)]">
+              A tecnologia que <span class="text-[var(--gold-90)]">protege</span> o que você bebe —
+              <span class="block mt-1">e transforma <span class="underline decoration-[var(--gold-60)] underline-offset-4">confiança</span> em valor para seu negócio.</span>
+            </h1>
+            <p class="mt-4 md:mt-5 text-[var(--ink-80)]">
+              <strong>Certifique seu estabelecimento com o selo oficial Bebida Selada®.</strong><br/>
+              Ganhe credibilidade imediata, fidelize clientes e entre para a Rede Segura Nacional.
+            </p>
+            <div class="mt-6 text-base md:text-lg tracking-wide text-[var(--petro)] flex items-center gap-2 justify-center text-center">
+              <span class="inline-block h-2 w-2 rounded-full bg-[var(--gold-70)] glow"></span>
+              <span class="tac-strong">Tecnologia • Auditoria • Confiança</span>
+            </div>
+            <div class="mt-7 flex flex-wrap gap-3">
+              <a href="#planos" class="btn-primary">Certificar meu estabelecimento</a>
+              <a href="#consumidor" class="btn-ghost">Sou cliente e quero conferir</a>
+            </div>
           </div>
-          <div class="mt-7 flex flex-wrap gap-3">
-            <a href="#planos" class="btn-primary">Certificar meu estabelecimento</a>
-            <a href="#consumidor" class="btn-ghost">Sou cliente e quero conferir</a>
+
+          <!-- SELO INSTITUCIONAL -->
+          <div class="relative flex flex-col items-center justify-start md:justify-center reveal">
+            <img src="img/selo-bebida-selada.svg"
+              alt="Selo Bebida Selada® — Rede Segura Nacional"
+              class="h-44 md:h-52 w-auto drop-shadow-[0_0_20px_rgba(217,185,63,.4)] saturate-150 brightness-110 select-none pointer-events-none"
+              loading="lazy"
+              decoding="async" />
+            <p class="mt-4 text-[14px] font-semibold tracking-wide uppercase text-center text-[var(--gold-80)]">
+              Selo Oficial · Rede Segura Nacional
+            </p>
           </div>
+
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label=<!-- HERO -->
-<section id="hero" class="relative pt-28 md:pt-36 pb-16 md:pb-24">
-  <div class="absolute inset-0 -z-10 bg-[linear-gradient(180deg,var(--hero-top),var(--bg))]"></div>
-  <div class="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-    <div class="hero-left-card bg-[var(--panel)]/80 rounded-2xl p-6 md:p-8 shadow-xl border border-[var(--stroke)] reveal">
-      <p class="text-[var(--lead)] font-semibold mb-2">Confiança que se vê</p>
-      <h1 class="text-3xl md:text-5xl leading-tight font-extrabold text-[var(--ink-95)]">
-        A tecnologia que <span class="text-[var(--gold-90)]">protege</span> o que você bebe —
-        <span class="block mt-1">e transforma <span class="underline decoration-[var(--gold-60)] underline-offset-4">confiança</span> em valor para seu negócio.</span>
-      </h1>
-      <p class="mt-4 md:mt-5 text-[var(--ink-80)]">
-        <strong>Certifique seu estabelecimento com o selo oficial Bebida Selada®.</strong><br/>
-        Ganhe credibilidade imediata, fidelize clientes e entre para a Rede Segura Nacional.
-      </p>
-      <div class="mt-6 text-base md:text-lg tracking-wide text-[var(--petro)] flex items-center gap-2 justify-center text-center">
-        <span class="inline-block h-2 w-2 rounded-full bg-[var(--gold-70)] glow"></span>
-        <span class="tac-strong">Tecnologia • Auditoria • Confiança</span>
-      </div>
-      <div class="mt-7 flex flex-wrap gap-3">
-        <a href="#planos" class="btn-primary">Certificar meu estabelecimento</a>
-        <a href="#consumidor" class="btn-ghost">Sou cliente e quero conferir</a>
-      </div>
-    </div>
-
-    <!-- Selo Institucional -->
-    <div class="relative flex flex-col items-center reveal">
-      <img src="img/selo-bebida-selada.svg" alt="Selo Bebida Selada® — Rede Segura Nacional" class="h-36 w-auto drop-shadow-lg select-none pointer-events-none" loading="lazy" decoding="async" />
-      <p class="mt-3 text-[13px] text-[var(--gold-70)] font-semibold tracking-wide uppercase text-center">
-        Selo Oficial · Rede Segura Nacional
-      </p>
-    </div>
-  </div>
-</section>
-
+      </section>
+      
 <!-- CONSUMIDOR -->
 <section id="consumidor" class="py-16 md:py-20 bg-[var(--bg)]">
   <div class="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
