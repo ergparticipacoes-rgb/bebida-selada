@@ -82,7 +82,10 @@ function hideVerifyModal() {
   setTimeout(() => verifyModal.classList.add("invisible"), 200);
   verifyModal.classList.remove("active");
   document.body.style.overflow = ""; // restaura rolagem
-}
+  // Garante que o botão "Fechar" funcione em todos os estados
+document.querySelectorAll('#closeModal, .btn-close, [data-close="modal"]').forEach(btn => {
+  btn.addEventListener('click', () => hideVerifyModal());
+});
 
 /* === EVENTOS MULTI-QR === */
 document.querySelectorAll(".qrButton, #qrButton, .qr-demo").forEach((btn) => {
