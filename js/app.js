@@ -179,6 +179,7 @@ async function runVerification(){
   const set=(id,val)=>{const el=document.getElementById(id); if(el) el.textContent=val;};
   set("resNome",d.nome); set("resCidade",d.cidade); set("resLote",d.lote); set("resAuditor",d.auditor); set("resData",d.data);
   stateChecking?.classList.add("hidden"); stateResult?.classList.remove("hidden");
+  runCheersAnimation();
 }
 
 btnBrinde?.addEventListener("click", async ()=>{
