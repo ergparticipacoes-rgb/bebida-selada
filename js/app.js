@@ -52,18 +52,26 @@ const io=new IntersectionObserver((entries)=>{
 },{threshold:.14});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 
-/* Modal de verificação */
-const verifyModal=document.getElementById("verifyModal");
-const qrButton=document.getElementById("qrButton");
-const closeModal=document.getElementById("closeModal");
-const stateChecking=document.getElementById("stateChecking");
-const stateResult=document.getElementById("stateResult");
-const stateReward=document.getElementById("stateReward");
-const btnBrinde=document.getElementById("btnBrinde");
-const backToResult=document.getElementById("backToResult");
-const btnCompartilhar=document.getElementById("btnCompartilhar");
-const confettiCanvas=document.getElementById("confetti");
-const downloadBadge=document.getElementById("downloadBadge");
+/* Modal de verificação — v3.3 aprimorado (multi-QR e UX refinado) */
+const verifyModal = document.getElementById("verifyModal");
+const closeModal = document.getElementById("closeModal");
+const stateChecking = document.getElementById("stateChecking");
+const stateResult = document.getElementById("stateResult");
+const stateReward = document.getElementById("stateReward");
+const btnBrinde = document.getElementById("btnBrinde");
+const backToResult = document.getElementById("backToResult");
+const btnCompartilhar = document.getElementById("btnCompartilhar");
+const confettiCanvas = document.getElementById("confetti");
+const downloadBadge = document.getElementById("downloadBadge");
+
+/* === MULTI-QR SUPPORT === */
+/* Permite que qualquer botão ou QR com .qrButton (ou o antigo .qr-demo) abra o modal */
+document.querySelectorAll(".qrButton, #qrButton, .qr-demo").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    openVerifyModal();
+  });
+});
 
 function openVerifyModal(){
   if(!verifyModal) return;
