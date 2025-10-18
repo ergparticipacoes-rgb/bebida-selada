@@ -315,6 +315,79 @@ document.getElementById('pwaInstall')?.addEventListener('click', async ()=>{
   deferredPrompt = null;
   document.getElementById('pwaBanner')?.classList.add('hidden');
 });
+/* ============================================================
+   BRINDE DIGITAL — Bebida Selada® v3.3 Premium
+   Efeito visual de celebração suave com áudio sutil
+   ============================================================ */
+
+function runCheersAnimation() {
+  const canvas = document.getElementById("cheersCanvas");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width, h = canvas.height;
+  let t = 0;
+  const img = new Image();
+  img.src = "img/brinde-digital-tacas.png";
+
+  // Áudio sutil de tilintar
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  let soundPlayed = false;
+  function playCheersSound() {
+    if (soundPlayed || !AudioCtx) return;
+    soundPlayed = true;
+    const ctxA = new AudioCtx();
+    const osc = ctxA.createOscillator();
+    const gain = ctxA.createGain();
+    osc.type = "triangle";
+    osc.frequency.value = 880;
+    gain.gain.setValueAtTime(0.0001, ctxA.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.06, ctxA.currentTime + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctxA.currentTime + 0.25);
+    osc.connect(gain);
+    gain.connect(ctxA.destination);
+    osc.start();
+    osc.stop(ctxA.currentTime + 0.26);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.save();
+    ctx.translate(w / 2, h / 2 + 20);
+
+    // Movimento senoidal das taças
+    const angle = Math.sin(t / 45) * 0.15; // ângulo de balanço
+    ctx.rotate(-angle);
+    ctx.drawImage(img, -110, -110, 220, 220);
+    ctx.restore();
+
+    // Espumas e bolhas sutis
+    for (let i = 0; i < 8; i++) {
+      const x = Math.random() * w * 0.6 + w * 0.2;
+      const y = h - (t * 2 + Math.random() * 100) % h;
+      const r = Math.random() * 2 + 0.5;
+      ctx.beginPath();
+      ctx.fillStyle = "rgba(255,255,255,0.06)";
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Pulsação dourada após toque
+    if (Math.abs(Math.sin(t / 45)) < 0.05) {
+      playCheersSound();
+      const g = ctx.createRadialGradient(w / 2, h / 2, 10, w / 2, h / 2, 120);
+      g.addColorStop(0, "rgba(217,185,63,0.15)");
+      g.addColorStop(1, "transparent");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    t++;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+}
 
 // Theme toggle sticky on mobile
 themeToggle?.classList.add('theme-toggle-mobile');
