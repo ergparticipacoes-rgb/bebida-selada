@@ -128,26 +128,6 @@ btnCompartilhar?.addEventListener("click", async () => {
   } catch (_) {}
 });
 
-function openVerifyModal(){
-  if(!verifyModal) return;
-  verifyModal.classList.add("active");
-  verifyModal.classList.remove("invisible","opacity-0");
-  stateChecking?.classList.remove("hidden");
-  stateResult?.classList.add("hidden");
-  stateReward?.classList.add("hidden");
-  runVerification();
-}
-function hideVerifyModal(){
-  if(!verifyModal) return;
-  verifyModal.classList.add("opacity-0");
-  setTimeout(()=>verifyModal.classList.add("invisible"),200);
-  verifyModal.classList.remove("active");
-}
-qrButton?.addEventListener("click",openVerifyModal);
-closeModal?.addEventListener("click",hideVerifyModal);
-verifyModal?.addEventListener("click",(e)=>{ if(e.target===verifyModal) hideVerifyModal(); });
-addEventListener("keydown",(e)=>{ if(e.key==="Escape" && verifyModal?.classList.contains("active")) hideVerifyModal(); });
-
 async function playScanSound(){
   const Ctx=window.AudioContext||window.webkitAudioContext;
   if(!Ctx) return;
