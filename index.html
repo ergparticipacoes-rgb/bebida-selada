@@ -319,28 +319,57 @@
         <div id="stateChecking" class="flex flex-col items-center text-center gap-3">
           <div class="loader"></div><h3 class="text-xl font-bold text-[var(--ink-95)]">Verificando selo…</h3><p class="text-[var(--ink-70)]">Conectando à Rede Segura Nacional e validando auditoria.</p>
         </div>
-        <div id="stateResult" class="hidden">
-          <canvas id="cheersCanvas" width="220" height="220" class="mb-3"></canvas>
-          <div class="flex items-center gap-2"><div class="h-6 w-6 rounded-full grid place-items-center bg-emerald-500/15 border border-emerald-500 text-emerald-500">✔</div><h3 class="text-xl font-bold text-[var(--ink-95)]">Selo válido e aprovado</h3></div>
-          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-[15px]">
-            <div class="info"><span class="k">Estabelecimento</span><span class="v" id="resNome">Adega Modelo</span></div>
-            <div class="info"><span class="k">Cidade/UF</span><span class="v" id="resCidade">Peruíbe/SP</span></div>
-            <div class="info"><span class="k">Lote</span><span class="v" id="resLote">LOT-PRD-2025-10-A13</span></div>
-            <div class="info"><span class="k">Auditor</span><span class="v" id="resAuditor">E. Rocha</span></div>
-            <div class="info sm:col-span-2"><span class="k">Última validação</span><span class="v" id="resData">15/10/2025 09:42</span></div>
-          </div>
-          <div class="mt-4 p-3 rounded-xl border border-[var(--stroke)] bg-[var(--panel-boost)] text-[var(--ink-85)]"><p><strong>Este selo foi validado digitalmente pela Rede Segura Nacional.</strong> Auditoria ativa, rastreabilidade confirmada e origem autenticada.</p></div>
-          <div class="mt-5 flex flex-wrap gap-3"><button id="btnBrinde" class="btn-primary">Resgatar brinde digital</button><button id="btnCompartilhar" class="btn-ghost">Compartilhar</button></div>
-        </div>
-        <div id="stateReward" class="hidden text-center relative">
-          <div class="mx-auto mb-3 h-20 w-20 rounded-2xl grid place-items-center border border-[var(--gold-60)]/50 bg-[var(--gold-soft)]/30 text-[var(--gold-90)] font-bold">🏅</div>
-          <h3 class="text-xl font-bold text-[var(--ink-95)]">Badge “Confiança Selada”</h3>
-          <p class="mt-1 text-[var(--ink-70)]">Você desbloqueou um brinde digital exclusivo. Salve e compartilhe.</p>
-          <div class="mt-4 flex items-center justify-center gap-3"><a id="downloadBadge" class="btn-primary" download="bebida-selada-badge.png">Baixar badge</a><button id="backToResult" class="btn-ghost">Voltar</button></div>
-          <canvas id="confetti" class="absolute inset-0 pointer-events-none"></canvas>
-        </div>
-      </div>
+        <div id="stateResult" class="hidden text-center relative">
+  <!-- Brinde Digital -->
+  <div id="brindeWrapper" class="flex flex-col items-center justify-center gap-3 mt-4">
+    <canvas id="cheersCanvas" width="180" height="180" class="mb-2"></canvas>
+    <div id="haloGold" class="hidden absolute w-40 h-40 rounded-full blur-3xl bg-[rgba(217,185,63,0.25)]"></div>
+
+    <div id="checkMark" class="hidden flex items-center justify-center w-14 h-14 rounded-full border-4 border-emerald-400 text-emerald-400 text-2xl font-bold">
+      ✓
     </div>
+
+    <h3 id="verifyTitle" class="text-xl font-bold text-[var(--ink-95)]">Selo válido e aprovado — Confiança confirmada</h3>
+    <p id="verifyText" class="text-[var(--ink-75)] max-w-sm leading-relaxed">
+      Confiança confirmada pela Rede Segura Nacional.
+    </p>
+  </div>
+
+  <!-- Informações da auditoria -->
+  <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-[15px] text-left max-w-md mx-auto">
+    <div class="info"><span class="k">Estabelecimento</span><span class="v" id="resNome">Adega Modelo</span></div>
+    <div class="info"><span class="k">Cidade/UF</span><span class="v" id="resCidade">Peruíbe/SP</span></div>
+    <div class="info"><span class="k">Lote</span><span class="v" id="resLote">LOT-PRD-2025-10-A13</span></div>
+    <div class="info"><span class="k">Auditor</span><span class="v" id="resAuditor">E. Rocha</span></div>
+    <div class="info sm:col-span-2"><span class="k">Última validação</span><span class="v" id="resData">15/10/2025 09:42</span></div>
+  </div>
+
+  <!-- Aviso institucional -->
+  <div class="mt-4 p-3 rounded-xl border border-[var(--stroke)] bg-[var(--panel-boost)] text-[var(--ink-85)] max-w-md mx-auto">
+    <p>
+      <strong>Validação digital concluída.</strong><br>
+      Auditoria ativa, rastreabilidade confirmada e origem autenticada pela Rede Segura Nacional.
+    </p>
+  </div>
+
+  <!-- Ações -->
+  <div class="mt-5 flex flex-wrap justify-center gap-3">
+    <button id="btnCompartilhar" class="btn-primary">📤 Compartilhar conquista</button>
+    <button id="closeModal" class="btn-ghost">Fechar</button>
+  </div>
+</div>
+
+<!-- (mantém o bloco stateReward caso queira reutilizar depois) -->
+<div id="stateReward" class="hidden text-center relative">
+  <div class="mx-auto mb-3 h-20 w-20 rounded-2xl grid place-items-center border border-[var(--gold-60)]/50 bg-[var(--gold-soft)]/30 text-[var(--gold-90)] font-bold">🏅</div>
+  <h3 class="text-xl font-bold text-[var(--ink-95)]">Badge “Confiança Selada”</h3>
+  <p class="mt-1 text-[var(--ink-70)]">Você desbloqueou um brinde digital exclusivo. Salve e compartilhe.</p>
+  <div class="mt-4 flex items-center justify-center gap-3">
+    <a id="downloadBadge" class="btn-primary" download="bebida-selada-badge.png">Baixar badge</a>
+    <button id="backToResult" class="btn-ghost">Voltar</button>
+  </div>
+  <canvas id="confetti" class="absolute inset-0 pointer-events-none"></canvas>
+</div>
 
     <div id="planModal" class="invisible opacity-0 fixed inset-0 z-[70] grid place-items-center transition-all" role="dialog" aria-modal="true" aria-labelledby="planTitle">
       <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
