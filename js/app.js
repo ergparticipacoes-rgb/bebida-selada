@@ -126,11 +126,37 @@ function getAuditData(){
 async function runVerification(){
   flashSweep();
   stateChecking?.classList.remove("hidden");
-  await wait(300); await playScanSound(); await wait(2400);
-  const d=getAuditData();
-  const set=(id,val)=>{const el=document.getElementById(id); if(el) el.textContent=val;};
-  set("resNome",d.nome); set("resCidade",d.cidade); set("resLote",d.lote); set("resAuditor",d.auditor); set("resData",d.data);
-  stateChecking?.classList.add("hidden"); stateResult?.classList.remove("hidden");
+  await wait(300); 
+  await playScanSound(); 
+  await wait(2400);
+
+  const d = getAuditData();
+
+  // Garante que os elementos sejam lidos mesmo se estiverem ocultos
+  const resNome = document.getElementById("resNome");
+  const resCidade = document.getElementById("resCidade");
+  const resLote = document.getElementById("resLote");
+  const resAuditor = document.getElementById("resAuditor");
+  const resData = document.getElementById("resData");
+
+  if(resNome) resNome.textContent = d.nome;
+  if(resCidade) resCidade.textContent = d.cidade;
+  if(resLote) resLote.textContent = d.lote;
+  if(resAuditor) resAuditor.textContent = d.auditor;
+  if(resData) resData.textContent = d.data;
+
+  // Exibe o resultado
+  stateChecking?.classList.add("hidden");
+  stateResult?.classList.remove("hidden");
+
+  // Microanimação de entrada no check
+  const check = stateResult?.querySelector('.h-14.w-14');
+  if (check) {
+    check.animate(
+      [{ transform: "scale(0.6)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
+      { duration: 400, easing: "ease-out" }
+    );
+  }
 }
 
 /* === Compartilhar === */
