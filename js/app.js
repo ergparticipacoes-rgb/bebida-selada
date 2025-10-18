@@ -1,5 +1,5 @@
 /* ============================================================
-   BEBIDA SELADA® v3.3.1 — APP.JS
+   BEBIDA SELADA® v4.1 PRIME+ — APP.JS
    ============================================================ */
 
 /* === Inicialização de tema === */
@@ -54,49 +54,17 @@ const io=new IntersectionObserver((entries)=>{
 },{threshold:.14});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 
-/* ============================================================
-   MODAL DE VERIFICAÇÃO
-   ============================================================ */
-
-const verifyModal=document.getElementById("verifyModal");
-const stateChecking=document.getElementById("stateChecking");
-const stateResult=document.getElementById("stateResult");
-const stateReward=document.getElementById("stateReward");
-const btnCompartilhar=document.getElementById("btnCompartilhar");
-const backToResult=document.getElementById("backToResult");
-const downloadBadge=document.getElementById("downloadBadge");
-const confettiCanvas=document.getElementById("confetti");
-
-/* === Funções principais === */
-function openVerifyModal(){
-  if(!verifyModal) return;
-  verifyModal.classList.add("active");
-  verifyModal.classList.remove("invisible","opacity-0");
-  stateChecking?.classList.remove("hidden");
-  stateResult?.classList.add("hidden");
-  stateReward?.classList.add("hidden");
-  document.body.style.overflow="hidden";
-  runVerification();
-}
-function hideVerifyModal(){
-  if(!verifyModal) return;
-  verifyModal.classList.add("opacity-0");
-  setTimeout(()=>verifyModal.classList.add("invisible"),200);
-  verifyModal.classList.remove("active");
-  document.body.style.overflow="";
-}
-
-/* === Eventos === */
-document.querySelectorAll(".qrButton, #qrButton, .qr-demo").forEach(btn=>{
-  btn.addEventListener("click",(e)=>{ e.preventDefault(); openVerifyModal(); });
+/* === QR Button (modal simulado) === */
+document.querySelectorAll(".qrButton").forEach(btn=>{
+  btn.addEventListener("click", async (e)=>{
+    e.preventDefault();
+    flashSweep();
+    await wait(300);
+    playScanSound();
+  });
 });
-document.querySelectorAll('#closeModal, .btn-close, [data-close="modal"]').forEach(btn=>{
-  btn.addEventListener('click',()=>hideVerifyModal());
-});
-verifyModal?.addEventListener("click",(e)=>{ if(e.target===verifyModal) hideVerifyModal(); });
-addEventListener("keydown",(e)=>{ if(e.key==="Escape" && verifyModal?.classList.contains("active")) hideVerifyModal(); });
 
-/* === Efeito de verificação === */
+/* === Efeito de som leve === */
 async function playScanSound(){
   const Ctx=window.AudioContext||window.webkitAudioContext;
   if(!Ctx) return;
@@ -106,140 +74,35 @@ async function playScanSound(){
   gain.gain.setValueAtTime(0.0001,ctx.currentTime);
   gain.gain.exponentialRampToValueAtTime(0.06,ctx.currentTime+0.02);
   gain.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+0.22);
-  osc.connect(gain);gain.connect(ctx.destination);osc.start();osc.stop(ctx.currentTime+0.24);
+  osc.connect(gain);gain.connect(ctx.destination);
+  osc.start();osc.stop(ctx.currentTime+0.24);
 }
 
+/* === Flash (simulação visual da varredura) === */
 function flashSweep(){
-  const el=document.querySelector(".qr-sweep"); if(!el) return;
-  el.style.transition="none"; el.style.opacity="0.95";
-  requestAnimationFrame(()=>{ setTimeout(()=>{ el.style.transition="opacity .6s ease"; el.style.opacity=".7"; setTimeout(()=>el.style.opacity=".35",220); }, 40); });
-}
-
-function getAuditData(){
-  return {
-    nome:"Adega Modelo", cidade:"Peruíbe/SP",
-    lote:"LOT-PRD-2025-10-A13", auditor:"E. Rocha",
-    data:new Date().toLocaleString("pt-BR")
-  };
-}
-
-async function runVerification(){
-  flashSweep();
-  stateChecking?.classList.remove("hidden");
-  stateResult?.classList.add("hidden");
-
-  await wait(300);
-  await playScanSound();
-  await wait(2400);
-
-  const d = getAuditData();
-
-  // Verifica e aplica dados apenas quando o modal está visível
-  requestAnimationFrame(() => {
-    const applyData = () => {
-      const resNome = document.getElementById("resNome");
-      const resCidade = document.getElementById("resCidade");
-      const resLote = document.getElementById("resLote");
-      const resAuditor = document.getElementById("resAuditor");
-      const resData = document.getElementById("resData");
-
-      if (resNome && resCidade && resLote && resAuditor && resData) {
-        resNome.textContent = d.nome;
-        resCidade.textContent = d.cidade;
-        resLote.textContent = d.lote;
-        resAuditor.textContent = d.auditor;
-        resData.textContent = d.data;
-
-        stateChecking?.classList.add("hidden");
-        stateResult?.classList.remove("hidden");
-
-        // Animação de entrada no check
-        const check = stateResult?.querySelector('.h-14.w-14');
-        if (check) {
-          check.animate(
-            [{ transform: "scale(0.6)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
-            { duration: 400, easing: "ease-out" }
-          );
-        }
-      } else {
-        // tenta novamente até carregar os elementos (seguro)
-        setTimeout(applyData, 100);
-      }
-    };
-    applyData();
+  const el=document.querySelector(".qr-sweep-white");
+  if(!el) return;
+  el.style.transition="none";
+  el.style.opacity="1";
+  requestAnimationFrame(()=>{
+    setTimeout(()=>{
+      el.style.transition="opacity .6s ease";
+      el.style.opacity="0.6";
+      setTimeout(()=>el.style.opacity="0.3",240);
+    },50);
   });
 }
 
-/* === Compartilhar === */
-btnCompartilhar?.addEventListener("click", async ()=>{
-  const text="Selo verificado e aprovado na Bebida Selada® — Confiança que se vê.";
-  try{
-    if(navigator.share){ await navigator.share({title:"Bebida Selada®", text, url:location.href}); }
-    else if(navigator.clipboard?.writeText){ 
-      await navigator.clipboard.writeText(text+" "+location.href); 
-      alert("Texto copiado para compartilhar."); 
-    }
-  }catch(_){}
-});
-
-/* ============================================================
-   PLANOS — MODAL DE DETALHES
-   ============================================================ */
-const planModal=document.getElementById("planModal");
-const closePlanModal=document.getElementById("closePlanModal");
-const planTitle=document.getElementById("planTitle");
-const planPrice=document.getElementById("planPrice");
-const planBenefits=document.getElementById("planBenefits");
-const planTalk=document.getElementById("planTalk");
-
-const plans={
-  essencial:{title:"Essencial",price:{from:"R$ 197",now:"R$ 119/mês"},benefits:["Selo digital + QR dinâmico","Entradas de lote mensais","Canal WhatsApp prioritário","Acesso ao painel do estabelecimento"]},
-  pro:{title:"Pro",price:{from:"R$ 247",now:"R$ 189/mês"},benefits:["Todos os recursos do Essencial","Painel de lotes avançado","Auditorias ampliadas","Destaque na Rede Segura"]},
-  proplus:{title:"Pro+",price:{from:"",now:"Sob consulta"},benefits:["Lotes ilimitados","Auditoria contínua","Suporte dedicado e SLA","Integrações personalizadas"]}
-};
-
-document.querySelectorAll(".btn-plan-details").forEach((btn)=>{
-  btn.addEventListener("click",()=>{
-    const key=btn.dataset.plan||"essencial"; const p=plans[key]||plans.essencial;
-    if(!planModal) return;
-    planTitle&&(planTitle.textContent=`Plano ${p.title}`);
-    if(planPrice){ planPrice.innerHTML=p.price.from?`<span class='line-through mr-2'>${p.price.from}</span> <strong>${p.price.now}</strong>`:`<strong>${p.price.now}</strong>`; }
-    if(planBenefits){ planBenefits.innerHTML=p.benefits.map((b)=>`<li>• ${b}</li>`).join(""); }
-    planModal.classList.add("active"); planModal.classList.remove("invisible","opacity-0");
-    planTalk?.addEventListener("click",()=>{ 
-      const w=window.open("https://wa.me/5513982259477","_blank","noopener,noreferrer"); 
-      if(w) w.opener=null; 
-    },{once:true});
-  });
-});
-closePlanModal?.addEventListener("click",()=>{ planModal?.classList.add("opacity-0"); setTimeout(()=>planModal?.classList.add("invisible"),200); planModal?.classList.remove("active"); });
-planModal?.addEventListener("click",(e)=>{ if(e.target===planModal){ planModal.classList.add("opacity-0"); setTimeout(()=>planModal.classList.add("invisible"),200); planModal.classList.remove("active"); }});
-
-/* ============================================================
-   KPI ANIMATION + FORM + PWA
-   ============================================================ */
-
-/* KPIs */
-document.querySelectorAll(".kpi").forEach(el=>{
-  const target=Number(el.dataset.target||"0"); const dur=1000; const start=performance.now();
-  function step(ts){ const p=Math.min(1,(ts-start)/dur); const val=Math.floor(target*p); el.textContent=val.toLocaleString("pt-BR"); if(p<1) requestAnimationFrame(step); }
-  requestAnimationFrame(step);
-});
-
-/* Formulário de lead */
-const leadForm=document.getElementById("leadForm");
-const leadFeedback=document.getElementById("leadFeedback");
-leadForm?.addEventListener("submit",(e)=>{ e.preventDefault(); leadFeedback?.classList.remove("hidden"); leadForm.reset(); });
-
-/* PWA install banner */
+/* === PWA Banner === */
 let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e)=>{
+window.addEventListener('beforeinstallprompt',(e)=>{
   e.preventDefault();
   deferredPrompt=e;
-  document.getElementById('pwaBanner')?.classList.remove('hidden');
+  const banner=document.getElementById('pwaBanner');
+  if(banner) banner.classList.remove('hidden');
 });
 document.getElementById('pwaDismiss')?.addEventListener('click',()=>document.getElementById('pwaBanner')?.classList.add('hidden'));
-document.getElementById('pwaInstall')?.addEventListener('click', async ()=>{
+document.getElementById('pwaInstall')?.addEventListener('click',async()=>{
   if(!deferredPrompt) return;
   deferredPrompt.prompt();
   await deferredPrompt.userChoice;
@@ -247,7 +110,7 @@ document.getElementById('pwaInstall')?.addEventListener('click', async ()=>{
   document.getElementById('pwaBanner')?.classList.add('hidden');
 });
 
-/* SW atualização suave */
+/* === Service Worker atualização suave === */
 if("serviceWorker" in navigator){
   navigator.serviceWorker.register("/service-worker.js").then((reg)=>{
     if(reg.waiting){ reg.waiting.postMessage("skipWaiting"); }
