@@ -151,32 +151,22 @@ function getAuditData(){
     data: new Date().toLocaleString("pt-BR")
   };
 }
-async function runVerification(){
+async function runVerification() {
   flashSweep();
   stateChecking?.classList.remove("hidden");
-  await wait(300); await playScanSound(); await wait(2800);
-  const d=getAuditData();
-  const set=(id,val)=>{const el=document.getElementById(id); if(el) el.textContent=val;};
-  set("resNome",d.nome); set("resCidade",d.cidade); set("resLote",d.lote); set("resAuditor",d.auditor); set("resData",d.data);
-  stateChecking?.classList.add("hidden"); stateResult?.classList.remove("hidden");
-  runCheersAnimation();
+  await wait(300);
+  await playScanSound();  // ✅ mantém só este bip inicial
+  await wait(1800);
+  const d = getAuditData();
+  const set = (id,val)=>{const el=document.getElementById(id); if(el) el.textContent=val;};
+  set("resNome", d.nome);
+  set("resCidade", d.cidade);
+  set("resLote", d.lote);
+  set("resAuditor", d.auditor);
+  set("resData", d.data);
+  stateChecking?.classList.add("hidden");
+  stateResult?.classList.remove("hidden");
 }
-
-btnBrinde?.addEventListener("click", async ()=>{
-  if(!stateResult||!stateReward) return;
-  stateResult.classList.add("hidden"); stateReward.classList.remove("hidden");
-  runConfetti(confettiCanvas);
-  const dataUrl=await generateBadge(); if(downloadBadge) downloadBadge.setAttribute("href", dataUrl);
-});
-backToResult?.addEventListener("click",()=>{ stateReward?.classList.add("hidden"); stateResult?.classList.remove("hidden"); });
-btnCompartilhar?.addEventListener("click", async ()=>{
-  const text="Selo verificado e aprovado na Bebida Selada® — Confiança que se vê.";
-  try{
-    if(navigator.share){ await navigator.share({title:"Bebida Selada®", text, url: location.href}); }
-    else if(navigator.clipboard?.writeText){ await navigator.clipboard.writeText(text+" "+location.href); alert("Texto copiado para compartilhar."); }
-  }catch(_){}
-});
-
 function runConfetti(canvas){
   if(!canvas) return;
   const ctx=canvas.getContext("2d");
