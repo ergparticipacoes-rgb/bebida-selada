@@ -1,6 +1,5 @@
 /* ============================================================
-   BEBIDA SELADA® — SERVICE WORKER v4.1 PRIME
-   Cache inteligente + fallback offline + atualização suave
+   BEBIDA SELADA® — SERVICE WORKER v4.1 PRIME+
    ============================================================ */
 const CACHE_NAME = "bebida-selada-v4.1-prime";
 const CORE_ASSETS = [
@@ -29,7 +28,7 @@ self.addEventListener("activate", (event) => {
   })());
 });
 
-/* === Estratégia de busca === */
+/* === Busca === */
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   if (request.method !== "GET") return;
