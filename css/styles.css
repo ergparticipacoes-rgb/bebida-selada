@@ -199,3 +199,13 @@ body{background:var(--bg); color:var(--ink-90);}
 .halo-petro:hover{box-shadow:0 0 0 6px rgba(27,66,78,.08)}
 
 h2.petro{color:var(--petro)}
+
+/* === QR Menor — Efeito de Varredura === */
+@keyframes scan {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(-100%); }
+}
+.animate-scan {
+  background: linear-gradient(0deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: scan 2.5s linear infinite;
+}
