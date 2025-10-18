@@ -297,76 +297,114 @@ document.getElementById('pwaInstall')?.addEventListener('click', async ()=>{
   document.getElementById('pwaBanner')?.classList.add('hidden');
 });
 /* ============================================================
-   BRINDE DIGITAL — Bebida Selada® v3.3 Premium
-   Efeito visual de celebração suave com áudio sutil
+   BRINDE DIGITAL — Bebida Selada® v3.5 Premium
+   Animação simbólica + halo dourado + check final
    ============================================================ */
-
 function runCheersAnimation() {
   const canvas = document.getElementById("cheersCanvas");
+  const check = document.getElementById("checkMark");
+  const halo = document.getElementById("haloGold");
+  const title = document.getElementById("verifyTitle");
+  const text = document.getElementById("verifyText");
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
   const w = canvas.width, h = canvas.height;
-  let t = 0;
-
-  // Carrega a imagem e só inicia quando estiver pronta
   const img = new Image();
   img.src = "img/brinde-digital-tacas.png";
-  img.onload = () => draw(); // só desenha após carregar
-
-  // Som sutil de tilintar
-  const AudioCtx = window.AudioContext || window.webkitAudioContext;
-  let soundPlayed = false;
-  function playCheersSound() {
-    if (soundPlayed || !AudioCtx) return;
-    soundPlayed = true;
-    const ctxA = new AudioCtx();
-    const osc = ctxA.createOscillator();
-    const gain = ctxA.createGain();
-    osc.type = "triangle";
-    osc.frequency.value = 880;
-    gain.gain.setValueAtTime(0.0001, ctxA.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.06, ctxA.currentTime + 0.02);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctxA.currentTime + 0.25);
-    osc.connect(gain);
-    gain.connect(ctxA.destination);
-    osc.start();
-    osc.stop(ctxA.currentTime + 0.26);
-  }
+  let t = 0, finished = false;
+  img.onload = () => draw();
 
   function draw() {
+    if (finished) return;
     ctx.clearRect(0, 0, w, h);
     ctx.save();
-    ctx.translate(w / 2, h / 2 + 20);
-
-    // Movimento das taças (balanço suave)
-    const angle = Math.sin(t / 45) * 0.15;
+    ctx.translate(w / 2, h / 2 + 10);
+    const angle = Math.sin(t / 40) * 0.2;
     ctx.rotate(-angle);
-    ctx.drawImage(img, -110, -110, 220, 220);
+    ctx.drawImage(img, -90, -90, 180, 180);
     ctx.restore();
 
-    // Espumas e bolhas sutis
-    for (let i = 0; i < 8; i++) {
-      const x = Math.random() * w * 0.6 + w * 0.2;
-      const y = h - (t * 2 + Math.random() * 100) % h;
+    // espumas
+    for (let i = 0; i < 10; i++) {
+      const x = Math.random() * w * 0.7 + w * 0.15;
+      const y = h - (t * 2 + Math.random() * 80) % h;
       const r = Math.random() * 2 + 0.5;
       ctx.beginPath();
-      ctx.fillStyle = "rgba(255,255,255,0.06)";
+      ctx.fillStyle = "rgba(255,255,255,0.08)";
       ctx.arc(x, y, r, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // Brilho dourado e som no toque
-    if (Math.abs(Math.sin(t / 45)) < 0.05) {
+    // som e brilho
+    if (Math.abs(Math.sin(t / 40)) < 0.04) {
       playCheersSound();
-      const g = ctx.createRadialGradient(w / 2, h / 2, 10, w / 2, h / 2, 120);
-      g.addColorStop(0, "rgba(217,185,63,0.15)");
+      const g = ctx.createRadialGradient(w / 2, h / 2, 10, w / 2, h / 2, 100);
+      g.addColorStop(0, "rgba(217,185,63,0.18)");
       g.addColorStop(1, "transparent");
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
     }
 
     t++;
-    requestAnimationFrame(draw);
+    if (t < 160) {
+      requestAnimationFrame(draw);
+    } else {
+      fadeOutCheers();
+    }
+  }
+
+  // áudio
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  function playCheersSound() {
+    if (!AudioCtx) return;
+    const ctxA = new AudioCtx();
+    const osc = ctxA.createOscillator();
+    const gain = ctxA.createGain();
+    osc.type = "triangle";
+    osc.frequency.value = 880;
+    gain.gain.setValueAtTime(0.0001, ctxA.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.05, ctxA.currentTime + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctxA.currentTime + 0.25);
+    osc.connect(gain);
+    gain.connect(ctxA.destination);
+    osc.start();
+    osc.stop(ctxA.currentTime + 0.25);
+  }
+
+  // saída suave
+  function fadeOutCheers() {
+    finished = true;
+    let opacity = 1;
+    const fade = setInterval(() => {
+      opacity -= 0.05;
+      canvas.style.opacity = opacity;
+      if (opacity <= 0) {
+        clearInterval(fade);
+        canvas.style.display = "none";
+        showCheck();
+      }
+    }, 40);
+  }
+
+  // check final
+  function showCheck() {
+    halo.classList.remove("hidden");
+    halo.style.animation = "haloExpand 1.2s ease-out forwards";
+
+    setTimeout(() => {
+      check.classList.remove("hidden");
+      check.style.opacity = "0";
+      check.style.transition = "all .6s ease";
+      check.style.transform = "scale(1.2)";
+      check.style.opacity = "1";
+
+      title.textContent = "Selo válido e aprovado — Confiança confirmada";
+      text.textContent = "Confiança confirmada pela Rede Segura Nacional.";
+    }, 400);
+
+    setTimeout(() => {
+      halo.style.opacity = "0";
+    }, 1500);
   }
 }
