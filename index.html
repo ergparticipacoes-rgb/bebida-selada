@@ -316,24 +316,65 @@
   </div>
 </footer>
 
-    <!-- MODAIS -->
-    <div id="verifyModal" class="invisible opacity-0 fixed inset-0 z-[60] grid place-items-center transition-all" role="dialog" aria-modal="true" aria-label="Verificação do selo">
-      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-      <div class="relative w-[94%] max-w-xl rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-5 md:p-6 shadow-2xl">
-        <button id="closeModal" class="absolute right-4 top-4 text-[var(--ink-60)] hover:text-[var(--ink-90)]" aria-label="Fechar">✕</button>
-        <div id="stateChecking" class="flex flex-col items-center text-center gap-3">
-          <div class="loader"></div><h3 class="text-xl font-bold text-[var(--ink-95)]">Verificando selo…</h3><p class="text-[var(--ink-70)]">Conectando à Rede Segura Nacional e validando auditoria.</p>
-        </div>
-        <div id="stateResult" class="hidden text-center relative">
-  <div class="flex flex-col items-center justify-center gap-3 mt-4">
-    <div class="h-14 w-14 rounded-full grid place-items-center bg-emerald-500/10 border-2 border-emerald-500 text-emerald-500 text-2xl font-bold">
-      ✓
+ <!-- MODAIS -->
+<div id="verifyModal" class="invisible opacity-0 fixed inset-0 z-[60] grid place-items-center transition-all" role="dialog" aria-modal="true" aria-label="Verificação do selo">
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+  <div class="relative w-[94%] max-w-xl rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-5 md:p-6 shadow-2xl">
+    <!-- Botão fechar -->
+    <button id="closeModal" class="absolute right-4 top-4 text-[var(--ink-60)] hover:text-[var(--ink-90)]" aria-label="Fechar">✕</button>
+
+    <!-- Estado: verificando -->
+    <div id="stateChecking" class="flex flex-col items-center text-center gap-3 py-10">
+      <div class="loader"></div>
+      <h3 class="text-xl font-bold text-[var(--ink-95)]">Verificando selo…</h3>
+      <p class="text-[var(--ink-70)]">Conectando à Rede Segura Nacional e validando auditoria.</p>
     </div>
-    <h3 id="verifyTitle" class="text-xl font-bold text-[var(--ink-95)]">Selo válido e aprovado — Confiança confirmada</h3>
-    <p id="verifyText" class="text-[var(--ink-75)] max-w-sm leading-relaxed">
-      Confiança confirmada pela Rede Segura Nacional.
-    </p>
+
+    <!-- Estado: resultado -->
+    <div id="stateResult" class="hidden text-center relative py-4">
+      <div class="flex flex-col items-center justify-center gap-3 mt-2">
+        <div class="h-14 w-14 rounded-full grid place-items-center bg-emerald-500/10 border-2 border-emerald-500 text-emerald-500 text-2xl font-bold">
+          ✓
+        </div>
+        <h3 id="verifyTitle" class="text-xl font-bold text-[var(--ink-95)]">Selo válido e aprovado — Confiança confirmada</h3>
+        <p id="verifyText" class="text-[var(--ink-75)] max-w-sm leading-relaxed">
+          Confiança confirmada pela Rede Segura Nacional.
+        </p>
+      </div>
+
+      <!-- Dados de auditoria -->
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-[15px] text-left max-w-md mx-auto">
+        <div class="info"><span class="k">Estabelecimento</span><span class="v" id="resNome"></span></div>
+        <div class="info"><span class="k">Cidade/UF</span><span class="v" id="resCidade"></span></div>
+        <div class="info"><span class="k">Lote</span><span class="v" id="resLote"></span></div>
+        <div class="info"><span class="k">Auditor</span><span class="v" id="resAuditor"></span></div>
+        <div class="info sm:col-span-2"><span class="k">Última validação</span><span class="v" id="resData"></span></div>
+      </div>
+
+      <!-- Linha institucional -->
+      <div class="mt-5 flex items-center justify-center gap-2 text-[13px] text-[var(--ink-70)]">
+        <span class="inline-block h-[2px] w-5 bg-[var(--gold)] rounded-full"></span>
+        <span>🛡️ Auditado via <strong>Rede Segura Nacional</strong> — Hash verificado</span>
+        <span class="inline-block h-[2px] w-5 bg-[var(--gold)] rounded-full"></span>
+      </div>
+
+      <!-- Aviso -->
+      <div class="mt-4 p-3 rounded-xl border border-[var(--stroke)] bg-[var(--panel-boost)] text-[var(--ink-85)] max-w-md mx-auto">
+        <p>
+          <strong>Validação digital concluída.</strong><br />
+          Auditoria ativa, rastreabilidade confirmada e origem autenticada.
+        </p>
+      </div>
+
+      <!-- Ações -->
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <button id="btnCompartilhar" class="btn-primary">📤 Compartilhar conquista</button>
+        <button id="closeModal" class="btn-ghost">Fechar</button>
+      </div>
+    </div>
   </div>
+</div>
 
 <!-- (mantém o bloco stateReward caso queira reutilizar depois) -->
 <div id="stateReward" class="hidden text-center relative">
