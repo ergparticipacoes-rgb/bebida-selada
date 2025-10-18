@@ -1,30 +1,12 @@
-/* ============================================================
-   BEBIDA SELADA® v4.1 PRIME+ — APP.JS
-   ============================================================ */
-
-/* === Inicialização de tema === */
-(function initTheme(){
-  try{
-    const saved = localStorage.getItem("bs_theme");
-    if(saved){ document.documentElement.setAttribute("data-theme", saved); }
-    else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
-      document.documentElement.setAttribute("data-theme","dark");
-    }
-  }catch(_){}
-})();
-
+/* Bebida Selada® v2.6.3 Prime — JS */
 const wait = (ms)=>new Promise(r=>setTimeout(r,ms));
 
-/* === Menu === */
+/* Menu */
 const menuBtn=document.getElementById("menuBtn");
 const menuList=document.getElementById("menuList");
-menuBtn?.addEventListener("click",()=>{
-  const expanded=menuBtn.getAttribute("aria-expanded")==="true";
-  menuBtn.setAttribute("aria-expanded", String(!expanded));
-  menuList?.classList.toggle("hidden");
-});
+menuBtn?.addEventListener("click",()=>menuList.classList.toggle("hidden"));
 
-/* === Tema (persistente) === */
+/* Theme toggle (persisted) */
 const themeToggle=document.getElementById("themeToggle");
 function setTheme(mode){
   document.documentElement.setAttribute("data-theme", mode);
@@ -35,7 +17,7 @@ themeToggle?.addEventListener("click",()=>{
   setTheme(current==="light"?"dark":"light");
 });
 
-/* === Progresso de rolagem === */
+/* Scroll progress */
 const progress=document.getElementById("scrollProgress");
 function updateProgress(){
   const y=window.scrollY||0;
@@ -46,7 +28,7 @@ function updateProgress(){
 addEventListener("scroll",updateProgress,{passive:true});
 addEventListener("load",updateProgress);
 
-/* === Animações Reveal === */
+/* Reveal on scroll */
 const io=new IntersectionObserver((entries)=>{
   entries.forEach(en=>{
     if(en.isIntersecting){en.target.classList.add("visible");io.unobserve(en.target);}
@@ -54,17 +36,39 @@ const io=new IntersectionObserver((entries)=>{
 },{threshold:.14});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 
-/* === QR Button (modal simulado) === */
-document.querySelectorAll(".qrButton").forEach(btn=>{
-  btn.addEventListener("click", async (e)=>{
-    e.preventDefault();
-    flashSweep();
-    await wait(300);
-    playScanSound();
-  });
-});
+/* Modal de verificação */
+const verifyModal=document.getElementById("verifyModal");
+const qrButton=document.getElementById("qrButton");
+const closeModal=document.getElementById("closeModal");
+const stateChecking=document.getElementById("stateChecking");
+const stateResult=document.getElementById("stateResult");
+const stateReward=document.getElementById("stateReward");
+const btnBrinde=document.getElementById("btnBrinde");
+const backToResult=document.getElementById("backToResult");
+const btnCompartilhar=document.getElementById("btnCompartilhar");
+const confettiCanvas=document.getElementById("confetti");
+const downloadBadge=document.getElementById("downloadBadge");
 
-/* === Efeito de som leve === */
+function openVerifyModal(){
+  if(!verifyModal) return;
+  verifyModal.classList.add("active");
+  verifyModal.classList.remove("invisible","opacity-0");
+  stateChecking?.classList.remove("hidden");
+  stateResult?.classList.add("hidden");
+  stateReward?.classList.add("hidden");
+  runVerification();
+}
+function hideVerifyModal(){
+  if(!verifyModal) return;
+  verifyModal.classList.add("opacity-0");
+  setTimeout(()=>verifyModal.classList.add("invisible"),200);
+  verifyModal.classList.remove("active");
+}
+qrButton?.addEventListener("click",openVerifyModal);
+closeModal?.addEventListener("click",hideVerifyModal);
+verifyModal?.addEventListener("click",(e)=>{ if(e.target===verifyModal) hideVerifyModal(); });
+addEventListener("keydown",(e)=>{ if(e.key==="Escape" && verifyModal?.classList.contains("active")) hideVerifyModal(); });
+
 async function playScanSound(){
   const Ctx=window.AudioContext||window.webkitAudioContext;
   if(!Ctx) return;
@@ -74,57 +78,121 @@ async function playScanSound(){
   gain.gain.setValueAtTime(0.0001,ctx.currentTime);
   gain.gain.exponentialRampToValueAtTime(0.06,ctx.currentTime+0.02);
   gain.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+0.22);
-  osc.connect(gain);gain.connect(ctx.destination);
-  osc.start();osc.stop(ctx.currentTime+0.24);
+  osc.connect(gain);gain.connect(ctx.destination);osc.start();osc.stop(ctx.currentTime+0.24);
 }
-
-/* === Flash (simulação visual da varredura) === */
 function flashSweep(){
-  const el=document.querySelector(".qr-sweep-white");
-  if(!el) return;
-  el.style.transition="none";
-  el.style.opacity="1";
-  requestAnimationFrame(()=>{
-    setTimeout(()=>{
-      el.style.transition="opacity .6s ease";
-      el.style.opacity="0.6";
-      setTimeout(()=>el.style.opacity="0.3",240);
-    },50);
-  });
+  const el=document.querySelector(".qr-sweep"); if(!el) return;
+  el.style.transition="none"; el.style.opacity="0.95";
+  requestAnimationFrame(()=>{ setTimeout(()=>{ el.style.transition="opacity .6s ease"; el.style.opacity=".7"; setTimeout(()=>el.style.opacity=".35",220); }, 40); });
+}
+function getAuditData(){
+  return {
+    nome:"Adega Modelo", cidade:"Peruíbe/SP",
+    lote:"LOT-PRD-2025-10-A13", auditor:"E. Rocha",
+    data: new Date().toLocaleString("pt-BR")
+  };
+}
+async function runVerification(){
+  flashSweep();
+  stateChecking?.classList.remove("hidden");
+  await wait(300); await playScanSound(); await wait(2800);
+  const d=getAuditData();
+  const set=(id,val)=>{const el=document.getElementById(id); if(el) el.textContent=val;};
+  set("resNome",d.nome); set("resCidade",d.cidade); set("resLote",d.lote); set("resAuditor",d.auditor); set("resData",d.data);
+  stateChecking?.classList.add("hidden"); stateResult?.classList.remove("hidden");
 }
 
-/* === PWA Banner === */
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt',(e)=>{
-  e.preventDefault();
-  deferredPrompt=e;
-  const banner=document.getElementById('pwaBanner');
-  if(banner) banner.classList.remove('hidden');
+btnBrinde?.addEventListener("click", async ()=>{
+  if(!stateResult||!stateReward) return;
+  stateResult.classList.add("hidden"); stateReward.classList.remove("hidden");
+  runConfetti(confettiCanvas);
+  const dataUrl=await generateBadge(); if(downloadBadge) downloadBadge.setAttribute("href", dataUrl);
 });
-document.getElementById('pwaDismiss')?.addEventListener('click',()=>document.getElementById('pwaBanner')?.classList.add('hidden'));
-document.getElementById('pwaInstall')?.addEventListener('click',async()=>{
-  if(!deferredPrompt) return;
-  deferredPrompt.prompt();
-  await deferredPrompt.userChoice;
-  deferredPrompt=null;
-  document.getElementById('pwaBanner')?.classList.add('hidden');
+backToResult?.addEventListener("click",()=>{ stateReward?.classList.add("hidden"); stateResult?.classList.remove("hidden"); });
+btnCompartilhar?.addEventListener("click", async ()=>{
+  const text="Selo verificado e aprovado na Bebida Selada® — Confiança que se vê.";
+  try{
+    if(navigator.share){ await navigator.share({title:"Bebida Selada®", text, url: location.href}); }
+    else if(navigator.clipboard?.writeText){ await navigator.clipboard.writeText(text+" "+location.href); alert("Texto copiado para compartilhar."); }
+  }catch(_){}
 });
 
-/* === Service Worker atualização suave === */
-if("serviceWorker" in navigator){
-  navigator.serviceWorker.register("/service-worker.js").then((reg)=>{
-    if(reg.waiting){ reg.waiting.postMessage("skipWaiting"); }
-    reg.addEventListener("updatefound",()=>{
-      const sw=reg.installing;
-      sw?.addEventListener("statechange",()=>{
-        if(sw.state==="installed" && reg.waiting){
-          reg.waiting.postMessage("skipWaiting");
-        }
-      });
+function runConfetti(canvas){
+  if(!canvas) return;
+  const ctx=canvas.getContext("2d");
+  const rect=canvas.parentElement.getBoundingClientRect();
+  canvas.width=rect.width; canvas.height=rect.height;
+  const N=120;
+  const pieces=[...Array(N)].map(()=>({x:Math.random()*rect.width,y:-20-Math.random()*rect.height*.5,w:6+Math.random()*6,h:8+Math.random()*10,vy:2+Math.random()*3,vx:-1+Math.random()*2,r:Math.random()*360,vr:-6+Math.random()*12,c:Math.random()}));
+  let run=true; setTimeout(()=>run=false,1800);
+  (function loop(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(const p of pieces){
+      p.y+=p.vy; p.x+=p.vx; p.r+=p.vr;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r*Math.PI/180);
+      const colors=["#F6D477","#EDC765","#D9A93E","#8B5CF6","#2E8797","#1B424E"];
+      ctx.fillStyle=colors[Math.floor(p.c*colors.length)%colors.length];
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    }
+    if(run) requestAnimationFrame(loop);
+  })();
+}
+async function generateBadge(){
+  const size=320; const c=document.createElement("canvas"); c.width=size; c.height=size; const ctx=c.getContext("2d");
+  const g=ctx.createLinearGradient(0,0,0,size); g.addColorStop(0,"#1B424E"); g.addColorStop(1,"#0E2A33"); ctx.fillStyle=g; ctx.fillRect(0,0,size,size);
+  ctx.strokeStyle="#EDC765"; ctx.lineWidth=10; ctx.beginPath(); ctx.arc(size/2,size/2,size/2-18,0,Math.PI*2); ctx.stroke();
+  ctx.fillStyle="#F6D47722"; ctx.beginPath(); ctx.arc(size/2,size/2,size/2-30,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle="#EDC765"; ctx.font="700 20px Inter, Arial"; ctx.textAlign="center";
+  ctx.fillText("Bebida Selada®", size/2, size/2-10);
+  ctx.font="700 18px Inter, Arial"; ctx.fillText("Confiança Selada", size/2, size/2+18);
+  return c.toDataURL("image/png");
+}
+
+/* KPIs */
+const kpis=document.querySelectorAll(".kpi");
+if(kpis.length){
+  const kpiIO=new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+      if(!entry.isIntersecting) return;
+      const el=entry.target; const target=Number(el.dataset.target||"0"); const dur=1100; const start=performance.now();
+      function step(ts){ const p=Math.min(1,(ts-start)/dur); const val=Math.floor(target*p); el.textContent=val.toLocaleString("pt-BR"); if(p<1) requestAnimationFrame(step); else kpiIO.unobserve(el); }
+      requestAnimationFrame(step);
     });
-  }).catch(()=>{});
-  let refreshing=false;
-  navigator.serviceWorker.addEventListener("controllerchange",()=>{
-    if(refreshing) return; refreshing=true; window.location.reload();
-  });
+  },{threshold:.35});
+  kpis.forEach(el=>kpiIO.observe(el));
 }
+
+/* Lead form (fake submit) */
+const leadForm=document.getElementById("leadForm");
+const leadFeedback=document.getElementById("leadFeedback");
+leadForm?.addEventListener("submit",(e)=>{ e.preventDefault(); leadFeedback?.classList.remove("hidden"); leadForm.reset(); });
+
+/* Plan modal */
+const planModal=document.getElementById("planModal");
+const closePlanModal=document.getElementById("closePlanModal");
+const planTitle=document.getElementById("planTitle");
+const planPrice=document.getElementById("planPrice");
+const planBenefits=document.getElementById("planBenefits");
+const planTalk=document.getElementById("planTalk");
+const plans={
+  essencial:{title:"Essencial",price:{from:"R$ 197",now:"R$ 119/mês"},benefits:["Selo digital + QR dinâmico","Entradas de lote mensais","Canal WhatsApp prioritário","Acesso ao painel do estabelecimento"]},
+  pro:{title:"Pro",price:{from:"R$ 247",now:"R$ 189/mês"},benefits:["Todos os recursos do Essencial","Painel de lotes avançado","Auditorias ampliadas","Destaque na Rede Segura"]},
+  proplus:{title:"Pro+",price:{from:"",now:"Sob consulta"},benefits:["Lotes ilimitados","Auditoria contínua","Suporte dedicado e SLA","Integrações personalizadas"]}
+};
+document.querySelectorAll(".btn-plan-details").forEach((btn)=>{
+  btn.addEventListener("click",()=>{
+    const key=btn.dataset.plan||"essencial"; const p=plans[key]||plans.essencial;
+    if(!planModal) return;
+    planTitle&&(planTitle.textContent=`Plano ${p.title}`);
+    if(planPrice){ planPrice.innerHTML=p.price.from?`<span class="line-through mr-2">${p.price.from}</span> <strong>${p.price.now}</strong>`:`<strong>${p.price.now}</strong>`; }
+    if(planBenefits){ planBenefits.innerHTML=p.benefits.map((b)=>`<li>• ${b}</li>`).join(""); }
+    planModal.classList.add("active"); planModal.classList.remove("invisible","opacity-0");
+    planTalk?.addEventListener("click",()=>window.open("https://wa.me/5513982259477","_blank"),{once:true});
+  });
+});
+closePlanModal?.addEventListener("click",()=>{ planModal?.classList.add("opacity-0"); setTimeout(()=>planModal?.classList.add("invisible"),200); planModal?.classList.remove("active"); });
+planModal?.addEventListener("click",(e)=>{ if(e.target===planModal){ planModal.classList.add("opacity-0"); setTimeout(()=>planModal.classList.add("invisible"),200); planModal.classList.remove("active"); }});
+
+/* SW */
+if("serviceWorker" in navigator){ navigator.serviceWorker.register("/service-worker.js").catch(()=>{}); }
