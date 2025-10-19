@@ -5,308 +5,283 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Bebida Selada® — Confiança que se vê</title>
     <meta name="theme-color" content="#1B424E" />
+    <meta name="description" content="Sistema oficial de certificação e rastreabilidade digital de bebidas — confiança que se vê, transparência auditável e proteção ao consumidor." />
+    <link rel="canonical" href="https://bebidaselada.com.br/" />
+    <meta property="og:title" content="Bebida Selada® — Confiança que se vê" />
+    <meta property="og:description" content="Certificação digital de bebidas com QR verificável. Valorize seu negócio, proteja seu cliente." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="img/icon-512.png" />
+    <meta property="og:url" content="https://bebidaselada.com.br/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"Organization",
+      "name":"Bebida Selada",
+      "url":"https://bebidaselada.com.br/",
+      "logo":"img/selo-bebida-selada.svg",
+      "sameAs":["https://instagram.com/bebidaselada"]
+    }
+    </script>
+
     <link rel="manifest" href="manifest.json" />
     <link rel="icon" href="img/favicon.ico" />
+    <link rel="apple-touch-icon" href="img/icon-192.png" />
     <link rel="stylesheet" href="css/styles.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
-        theme: {
-          extend: {
-            colors: { petro: "#1B424E", gold: "#D9B93F" }
-          }
-        }
+        theme: { extend: { colors: { petro:"#1B424E", gold:"#D9B93F" } } }
       };
-      (function(){try{const t=localStorage.getItem("bs_theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(_){}})();
+      (function(){ try{ const t=localStorage.getItem("bs_theme"); if(t)document.documentElement.setAttribute("data-theme",t);}catch(_){}})();
     </script>
   </head>
+
   <body class="bg-[var(--bg)] text-[var(--ink-90)] selection:bg-yellow-200/60">
-    <div id="scrollProgress" class="fixed left-0 top-0 h-1.5 bg-gold z-[70]" style="width:0"></div>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <div id="scrollProgress" class="fixed left-0 top-0 h-1.5 bg-[var(--gold)] z-[70]" style="width:0"></div>
 
     <header class="fixed inset-x-0 top-0 z-50">
-      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(1200px_420px_at_50%_-150px,var(--smoke-10),transparent_60%)]"></div>
-      <nav class="relative container mx-auto px-4 py-4 md:py-5 flex items-center justify-between">
-        <a href="#hero" class="font-semibold tracking-tight text-gold text-lg md:text-xl">Bebida Selada®</a>
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(1200px_420px_at_50%_-150px,rgba(255,255,255,.06),transparent_60%)]"></div>
+      <nav class="relative container px-4 py-4 md:py-5 flex items-center justify-between" role="navigation" aria-label="Principal">
+        <a href="#hero" class="font-semibold tracking-tight text-[var(--gold)] text-lg md:text-xl">Bebida Selada®</a>
         <div class="flex items-center gap-3">
-          <button id="themeToggle" class="hidden md:inline-flex items-center gap-2 text-white/90 hover:text-white rounded-full px-3 py-1 border border-white/20"><span>☀️/🌙</span><span class="text-sm">Tema</span></button>
-          <button id="menuBtn" class="md:hidden text-white" aria-label="Abrir menu">☰</button>
+          <button id="themeToggle" class="inline-flex items-center gap-2 text-white/90 hover:text-white rounded-full px-3 py-1 border border-white/20" aria-pressed="false">
+            <span>☀️/🌙</span><span class="text-sm">Tema</span>
+          </button>
+          <button id="menuBtn" class="md:hidden text-white" aria-label="Abrir menu" aria-controls="menuList" aria-expanded="false">☰</button>
         </div>
         <ul id="menuList" class="hidden md:flex gap-6">
-          <li><a href="#consumidor" class="nav-link">Consumidor</a></li>
+          <li><a href="#hero" class="nav-link">Início</a></li>
           <li><a href="#estabelecimentos" class="nav-link">Estabelecimentos</a></li>
-          <li><a href="#como-funciona" class="nav-link">Como funciona</a></li>
           <li><a href="#planos" class="nav-link">Planos</a></li>
-          <li><a href="#representantes" class="nav-link">Representantes</a></li>
-          <li><a href="#governo" class="nav-link">Governo & Parcerias</a></li>
           <li><a href="#contato" class="nav-link">Contato</a></li>
         </ul>
       </nav>
     </header>
 
-    <section id="hero" class="relative pt-28 md:pt-36 pb-16 md:pb-24">
-      <div class="absolute inset-0 -z-10 bg-[linear-gradient(180deg,var(--hero-top),var(--bg))]"></div>
-      <div class="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-        <div class="hero-left-card bg-[var(--panel)]/80 rounded-2xl p-6 md:p-8 shadow-xl border border-[var(--stroke)] reveal">
-          <p class="text-[var(--lead)] font-semibold mb-2">Confiança que se vê</p>
-          <h1 class="text-3xl md:text-5xl leading-tight font-extrabold text-[var(--ink-95)]">
-            A tecnologia que <span class="text-[var(--gold-90)]">protege</span> o que você bebe —
-            <span class="block mt-1">com a <span class="underline decoration-[var(--gold-60)] underline-offset-4">confiança</span> que o Brasil merece.</span>
-          </h1>
-          <p class="mt-4 md:mt-5 text-[var(--ink-80)]"><strong>A primeira certificação digital de bebidas do Brasil.</strong> Transparência auditável, origem autenticada.</p>
-          <div class="mt-6 text-sm tracking-wide text-[var(--ink-70)] flex items-center gap-2">
-            <span class="inline-block h-2 w-2 rounded-full bg-[var(--gold-70)] glow"></span><span>Tecnologia • Auditoria • Confiança</span>
-          </div>
-          <div class="mt-7 flex flex-wrap gap-3">
-            <a href="#planos" class="btn-primary">Certificar meu estabelecimento</a>
-            <a href="#consumidor" class="btn-ghost">Sou cliente e quero conferir</a>
-          </div>
-        </div>
-        <div class="relative flex flex-col items-center reveal">
-          <div class="mb-4 flex items-center gap-3">
-            <div class="rounded-full px-3 py-1 text-xs font-semibold border border-[var(--gold-60)]/50 bg-[var(--gold-soft)]/30 text-[var(--gold-90)] backdrop-blur-sm">
-              Certificação Oficial · Rede Segura Nacional
+    <main id="conteudo" tabindex="-1">
+
+      <section id="hero" class="relative pt-28 md:pt-36 pb-16 md:pb-24">
+        <div class="bg-grad"></div>
+        <div class="container px-4 grid md:grid-cols-2 gap-10 items-center">
+          <div class="hero-left-card p-6 md:p-8 reveal">
+            <p class="text-[var(--gold)] font-semibold mb-2">Confiança que se vê</p>
+            <h1 class="text-3xl md:text-5xl leading-tight font-extrabold text-[var(--ink-95)]">
+              A tecnologia que <span class="text-[var(--gold-90)]">protege</span> o que você bebe —
+              <span class="block mt-1">e transforma <span class="underline decoration-[var(--gold-80)] underline-offset-4">confiança</span> em valor para seu negócio.</span>
+            </h1>
+            <p class="mt-4 md:mt-5 text-[var(--ink-80)]">
+              <strong>Certifique seu estabelecimento com o selo oficial Bebida Selada®.</strong><br/>
+              Ganhe credibilidade, fidelize clientes e entre para a Rede Segura Nacional.
+            </p>
+            <div class="mt-7 flex flex-wrap gap-3">
+              <a href="#planos" class="btn-primary">Certificar meu estabelecimento</a>
+              <a href="#consumidor" class="btn-ghost">Sou consumidor</a>
             </div>
           </div>
-          <button id="qrButton" class="relative group focus:outline-none" aria-label="Verificar selo">
-            <div class="qr-wrap"><img src="img/qr-bebida-selada-v2.svg" alt="QR Bebida Selada" class="qr-img" /><span class="qr-sweep"></span></div>
-          </button>
-          <p class="mt-3 text-[13px] text-[var(--ink-70)]">Toque ou clique para verificar este selo.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="selo-oficial" class="py-10 bg-[var(--bg)]">
-      <div class="container mx-auto px-4 flex items-center justify-center">
-        <div class="flex items-center gap-3 rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] px-4 py-3 shadow-md">
-          <img src="img/selo-oficial.svg" alt="Selo de Autenticidade" class="h-10 w-10" />
-          <div>
-            <p class="text-sm font-semibold text-[var(--ink-90)]">Certificação Oficial · Rede Segura Nacional</p>
-            <p class="text-[13px] text-[var(--ink-70)]">Selo de autenticidade digital — auditoria ativa e rastreabilidade.</p>
+          <div class="relative flex flex-col items-center justify-start md:justify-center reveal">
+            <img src="img/selo-bebida-selada.svg" alt="Selo Bebida Selada® — Rede Segura Nacional" class="h-44 md:h-52 w-auto drop-shadow-[0_0_20px_rgba(217,185,63,.4)] saturate-150 brightness-110 select-none pointer-events-none" loading="lazy" decoding="async" />
+            <p class="mt-4 text-[14px] font-semibold tracking-wide uppercase text-center text-[var(--gold-80)]">Selo Oficial · Rede Segura Nacional</p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="consumidor" class="py-16 md:py-20 bg-[var(--bg)]">
-      <div class="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-        <div class="reveal">
-          <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)]">Sou Consumidor</h2>
-          <p class="mt-2 text-[var(--ink-75)]">Aponte a câmera para o QR, verifique o selo e confira a auditoria ativa.</p>
-          <ul class="mt-6 space-y-2 text-[var(--ink-80)]">
-            <li>• Segurança de consumo em tempo real</li><li>• Origem e lote auditáveis</li><li>• Transparência que gera confiança</li>
-          </ul>
-        </div>
-        <div class="reveal">
-          <div class="rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-6 shadow-xl">
-            <h3 class="font-bold">Verificação em 1 toque</h3>
-            <p class="mt-2 text-[var(--ink-75)]">Clique em qualquer QR certificado para abrir a verificação.</p>
+      <section id="consumidor" class="py-16 md:py-20 bg-[var(--bg)]">
+        <div class="container px-4 grid md:grid-cols-2 gap-10 items-center">
+          <div class="reveal">
+            <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)]">Sou consumidor</h2>
+            <p class="mt-3 text-[var(--ink-80)]">A confiança também começa em você.</p>
+            <p class="mt-2 text-[var(--ink-75)] leading-relaxed">
+              Ao escanear um selo <strong>Bebida Selada®</strong>, você confirma a autenticidade de uma bebida
+              e <strong>participa de um movimento nacional pela transparência e segurança</strong>.
+            </p>
+            <p class="mt-4 text-[var(--ink-75)]">🔍 <strong>Toque ou clique no QR Code abaixo</strong> e veja a confiança sendo validada.</p>
+          </div>
+          <div class="grid place-items-center reveal">
+            <button class="qrButton relative group focus:outline-none" aria-label="Verificar selo">
+              <div class="qr-wrap w-40 h-40 md:w-56 md:h-56 rounded-xl overflow-hidden">
+                <img src="img/qr-bebida-selada-v4.png" alt="QR de demonstração Bebida Selada" class="qr-img" loading="lazy" decoding="async" />
+                <span class="qr-sweep"></span>
+              </div>
+            </button>
+            <p class="mt-3 text-[13px] text-[var(--ink-70)] text-center">Simulação de verificação digital — autenticidade confirmada pela Rede Segura Nacional.</p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="estabelecimentos" class="py-16 md:py-20 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,.04))]">
-      <div class="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-        <div class="reveal order-2 md:order-1">
-          <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)]">Sou Estabelecimento</h2>
-          <p class="mt-2 text-[var(--ink-75)]">Certifique seu negócio, receba o kit digital e comunique confiança.</p>
-          <ul class="mt-6 space-y-2 text-[var(--ink-80)]">
-            <li>• Selo oficial + QR dinâmico</li><li>• Entradas de lote e auditoria</li><li>• Divulgação na Rede Segura</li>
-          </ul>
-          <div class="mt-6 flex gap-3">
-            <a href="#planos" class="btn-primary">Ver planos</a>
-            <a href="#contato" class="btn-ghost">Falar com especialista</a>
-          </div>
-        </div>
-        <div class="reveal order-1 md:order-2">
-          <div class="rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-6 shadow-xl">
-            <h3 class="font-bold">Autoridade visível</h3>
-            <p class="mt-2 text-[var(--ink-75)]">O selo no balcão e o QR nas garrafas elevam a percepção de segurança.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="como-funciona" class="py-16 md:py-20 bg-[var(--bg)]">
-      <div class="container mx-auto px-4">
-        <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)] reveal">Como funciona</h2>
-        <div class="mt-8 grid md:grid-cols-4 gap-6">
-          <div class="step reveal"><div class="step-num">1</div><h4 class="step-title">Adesão</h4><p>Assine um plano e receba o kit digital.</p></div>
-          <div class="step reveal"><div class="step-num">2</div><h4 class="step-title">Cadastro</h4><p>Registre lotes e dados auditáveis.</p></div>
-          <div class="step reveal"><div class="step-num">3</div><h4 class="step-title">Aplicação</h4><p>Fixe o selo e use QRs nas bebidas.</p></div>
-          <div class="step reveal"><div class="step-num">4</div><h4 class="step-title">Verificação</h4><p>Cliente escaneia e valida em tempo real.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="planos" class="py-16 md:py-20 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,.04))]">
-      <div class="container mx-auto px-4">
-        <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)] reveal">Planos de certificação</h2>
-        <p class="mt-2 text-[var(--ink-75)] reveal">Certifique seu negócio hoje mesmo e receba seu kit digital de autenticidade.</p>
-        <div class="mt-8 grid md:grid-cols-3 gap-6">
-          <div class="plan-card plan-card--essencial reveal">
-            <h3 class="font-bold text-[var(--ink-95)]">Essencial</h3>
-            <p class="mt-2 text-[var(--ink-70)]">Para começar com o selo oficial.</p>
-            <p class="mt-4 text-[13px] text-[var(--ink-70)] line-through">R$ 197</p>
-            <p class="text-2xl font-extrabold text-[var(--ink-95)]">R$ 119<span class="text-base font-semibold">/mês</span></p>
-            <ul class="mt-5 space-y-2 text-[var(--ink-80)] text-sm">
-              <li>• Selo digital + QR dinâmico</li><li>• Entradas de lote mensais</li><li>• Canal WhatsApp prioritário</li><li>• Acesso ao painel do estabelecimento</li>
-            </ul>
-            <div class="mt-7 flex flex-col gap-3"><a href="#contato" class="btn-primary">Assinar</a><button class="btn-ghost btn-plan-details" data-plan="essencial">Ver detalhes</button></div>
-          </div>
-          <div class="plan-card plan-card--pro reveal">
-            <div class="text-xs inline-block mb-2 px-2 py-1 rounded bg-black/5 border border-[var(--stroke)]">Mais escolhido</div>
-            <h3 class="font-bold text-[var(--ink-95)]">Pro</h3>
-            <p class="mt-2 text-[var(--ink-70)]">Mais lotes e recursos avançados.</p>
-            <p class="mt-4 text-[13px] text-[var(--ink-70)] line-through">R$ 247</p>
-            <p class="text-2xl font-extrabold text-[var(--ink-95)]">R$ 189<span class="text-base font-semibold">/mês</span></p>
-            <ul class="mt-5 space-y-2 text-[var(--ink-80)] text-sm">
-              <li>• Todos os recursos do Essencial</li><li>• Painel de lotes avançado</li><li>• Auditorias ampliadas</li><li>• Destaque na Rede Segura</li>
-            </ul>
-            <div class="mt-7 flex flex-col gap-3"><a href="#contato" class="btn-primary">Assinar</a><button class="btn-ghost btn-plan-details" data-plan="pro">Ver detalhes</button></div>
-          </div>
-          <div class="plan-card plan-card--proplus reveal">
-            <h3 class="font-bold text-[var(--ink-95)]">Pro+</h3>
-            <p class="mt-2 text-[var(--ink-70)]">Para estabelecimentos de alto giro.</p>
-            <p class="mt-4 text-[var(--ink-75)]"><strong>Pro+</strong> (sob consulta)</p>
-            <ul class="mt-5 space-y-2 text-[var(--ink-80)] text-sm">
-              <li>• Lotes ilimitados</li><li>• Auditoria contínua</li><li>• Suporte dedicado e SLA</li><li>• Integrações personalizadas</li>
-            </ul>
-            <div class="mt-7 flex flex-col gap-3"><a href="#contato" class="btn-primary">Solicitar proposta</a><button class="btn-ghost btn-plan-details" data-plan="proplus">Ver detalhes</button></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="representantes" class="py-16 md:py-20 bg-[var(--bg)]">
-      <div class="container mx-auto px-4">
-        <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)]">Representantes Digitais</h2>
-        <p class="mt-2 text-[var(--ink-75)] max-w-3xl">Seja o elo da confiança na sua região. Torne-se um Representante Digital Oficial Bebida Selada®, receba treinamentos, suporte técnico e comissão em todas as certificações da sua área. Expanda a Rede Segura Nacional e cresça junto conosco.</p>
-        <div class="mt-8 grid md:grid-cols-4 gap-6">
-          <div class="rep-card"><h4 class="font-bold">📍 Representação exclusiva</h4><p class="mt-1 text-[var(--ink-70)]">Atuação territorial definida por contrato.</p></div>
-          <div class="rep-card"><h4 class="font-bold">💼 Comissões</h4><p class="mt-1 text-[var(--ink-70)]">Receita sobre todas as certificações.</p></div>
-          <div class="rep-card"><h4 class="font-bold">🎓 Treinamento</h4><p class="mt-1 text-[var(--ink-70)]">Onboarding e material oficial.</p></div>
-          <div class="rep-card"><h4 class="font-bold">🛠️ Suporte técnico</h4><p class="mt-1 text-[var(--ink-70)]">Canal prioritário e SLA.</p></div>
-        </div>
-        <div class="mt-8"><a href="#contato" class="btn-primary">Quero ser representante</a></div>
-      </div>
-    </section>
-
-    <section id="impacto" class="py-16 md:py-20 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,.04))]">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)]">O impacto real da confiança</h2>
-        <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div class="rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-6 shadow-xl"><div class="text-3xl font-extrabold text-[var(--ink-95)]"><span class="kpi" data-target="500">0</span> mil</div><p class="text-[var(--ink-70)]">bebidas verificadas</p></div>
-          <div class="rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-6 shadow-xl"><div class="text-3xl font-extrabold text-[var(--ink-95)]"><span class="kpi" data-target="1200">0</span>+</div><p class="text-[var(--ink-70)]">empreendedores certificados</p></div>
-          <div class="rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-6 shadow-xl"><div class="text-3xl font-extrabold text-[var(--ink-95)]"><span class="kpi" data-target="7">0</span></div><p class="text-[var(--ink-70)]">cidades parceiras</p></div>
-          <div class="rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-6 shadow-xl"><div class="text-3xl font-extrabold text-[var(--ink-95)]"><span class="kpi" data-target="30000">0</span>+</div><p class="text-[var(--ink-70)]">auditorias digitais</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="institucional" class="py-16 md:py-20 bg-[var(--bg)]">
-      <div class="container mx-auto px-4">
-        <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)]">Rede Segura — Confiança que se vê</h2>
-        <p class="mt-2 text-[var(--ink-75)] max-w-4xl">A Bebida Selada® é parte de um movimento nacional que une tecnologia, auditoria e responsabilidade social. Um selo que garante autenticidade e respeito à vida — alinhado à agenda ESG e ao interesse público.</p>
-      </div>
-    </section>
-
-    <section id="governo" class="py-16 md:py-20 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,.04))]">
-      <div class="container mx-auto px-4">
-        <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)]">Programa para Cidades e Parcerias</h2>
-        <p class="mt-2 text-[var(--ink-75)] max-w-4xl">Prefeituras, empreendedores e representantes: estamos prontos para apresentar o programa em sua cidade, fortalecer a Rede Segura Nacional e proteger o consumidor com tecnologia auditável.</p>
-        <div class="mt-8 grid md:grid-cols-2 gap-6">
-          <form id="leadForm" class="rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-6 shadow-xl">
-            <h3 class="font-bold text-[var(--ink-95)] mb-4">Fale conosco</h3>
-            <label class="block text-sm text-[var(--ink-75)] mb-1">Seu nome completo</label>
-            <input id="fNome" class="w-full rounded-xl border border-[var(--stroke)] p-3 mb-3" placeholder="Ex.: João Silva" required />
-            <label class="block text-sm text-[var(--ink-75)] mb-1">WhatsApp (com DDD)</label>
-            <input id="fZap" class="w-full rounded-xl border border-[var(--stroke)] p-3 mb-3" placeholder="(13) 9XXXX-XXXX" required />
-            <label class="block text-sm text-[var(--ink-75)] mb-1">Nome do estabelecimento / órgão</label>
-            <input id="fEstab" class="w-full rounded-xl border border-[var(--stroke)] p-3 mb-3" placeholder="Ex.: Adega Modelo ou Prefeitura de ..." />
-            <label class="block text-sm text-[var(--ink-75)] mb-1">Mensagem</label>
-            <textarea id="fMsg" rows="4" class="w-full rounded-xl border border-[var(--stroke)] p-3 mb-4" placeholder="Conte rapidamente sua necessidade"></textarea>
-            <div class="flex flex-wrap gap-3">
-              <button type="submit" class="btn-primary">Enviar Solicitação</button>
-              <a href="https://wa.me/5513982259477" target="_blank" class="btn-ghost">Falar no WhatsApp</a>
-              <a href="mailto:contato@bebidaselada.com.br" class="btn-ghost">contato@bebidaselada.com.br</a>
+      <section id="estabelecimentos" class="py-16 md:py-20 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,.04))]">
+        <div class="container px-4 grid md:grid-cols-2 gap-8 items-center">
+          <div class="reveal">
+            <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)]">Sou estabelecimento</h2>
+            <p class="mt-3 text-[var(--ink-80)]">Comunique confiança e destaque seu negócio com a certificação digital Bebida Selada®. Selo oficial, QR dinâmico e presença na Rede Segura — tudo para aumentar credibilidade, ticket médio e fidelização.</p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="#planos" class="btn-primary">Ver planos</a>
+              <a href="#kit" class="btn-ghost">Kit físico</a>
             </div>
-            <p id="leadFeedback" class="mt-3 text-[var(--ink-75)] hidden">Sua mensagem foi enviada! Em breve nossa equipe entrará em contato pelo WhatsApp.</p>
-          </form>
-          <div class="rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-6 shadow-xl">
-            <h4 class="font-bold text-[var(--ink-95)]">Como apoiamos sua cidade</h4>
-            <ul class="mt-3 space-y-2 text-[var(--ink-80)]">
-              <li>• Apresentação executiva do programa</li><li>• Plano de implantação por fases</li><li>• Materiais educativos e campanhas</li><li>• Acompanhamento de auditorias</li>
+          </div>
+          <div class="kit-card p-6 reveal">
+            <ul class="space-y-2 text-[var(--ink-85)]">
+              <li>• Selo físico + QR verificável em segundos</li>
+              <li>• Auditorias e rastreabilidade de lotes</li>
+              <li>• Página do estabelecimento na Rede Segura</li>
+              <li>• Suporte dedicado</li>
             </ul>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="faq" class="py-16 md:py-20 bg-[var(--bg)]">
-      <div class="container mx-auto px-4">
-        <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)]">Perguntas frequentes</h2>
-        <div class="mt-6 space-y-3">
-          <details class="faq-item"><summary>Como funciona a verificação do selo?</summary><p>O QR aciona uma auditoria digital que valida lotes, auditor responsável e última verificação.</p></details>
-          <details class="faq-item"><summary>Sou pequeno empreendedor. Vale a pena?</summary><p>Sim. O selo aumenta a confiança, reduz risco percebido e melhora a experiência do cliente.</p></details>
-          <details class="faq-item"><summary>Quais são os planos e valores?</summary><p>Essencial (R$ 119/mês), Pro (R$ 189/mês) e Pro+ (sob consulta). Consulte “Ver detalhes”.</p></details>
-          <details class="faq-item"><summary>Como me torno Representante Digital?</summary><p>Preencha o formulário e selecione “Quero ser representante”. Nossa equipe fará o onboarding.</p></details>
+      <section id="kit" class="py-14 bg-[var(--bg)]">
+        <div class="container px-4">
+          <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)] reveal">Kit físico de certificação</h2>
+          <div class="mt-6 grid md:grid-cols-4 gap-6">
+            <div class="kit-card p-5 reveal"><strong>Selo oficial</strong><p class="text-[var(--ink-75)] mt-1">Selo físico com acabamento premium.</p></div>
+            <div class="kit-card p-5 reveal"><strong>QR ativado</strong><p class="text-[var(--ink-75)] mt-1">QR dinâmico vinculando auditoria.</p></div>
+            <div class="kit-card p-5 reveal"><strong>Manual</strong><p class="text-[var(--ink-75)] mt-1">Guia de aplicação e boas práticas.</p></div>
+            <div class="kit-card p-5 reveal"><strong>Certificado</strong><p class="text-[var(--ink-75)] mt-1">Documento de autenticidade.</p></div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="contato" class="py-8 bg-[var(--bg)]"></section>
+      <section id="planos" class="py-16 md:py-20 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,.04))]">
+        <div class="container px-4">
+          <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)] reveal">Planos de certificação</h2>
+          <p class="mt-2 text-[var(--ink-75)] reveal">Certifique seu negócio e receba seu kit de autenticidade.</p>
+          <div class="mt-8 grid md:grid-cols-3 gap-6">
+            <div class="plan-card p-6 reveal">
+              <h3 class="font-bold text-[var(--ink-95)]">Essencial</h3>
+              <p class="mt-2 text-[var(--ink-70)]">Para começar com o selo oficial.</p>
+              <p class="mt-4 text-[13px] text-[var(--ink-70)] line-through">R$ 197</p>
+              <p class="text-2xl font-extrabold text-[var(--ink-95)]">R$ 119<span class="text-base font-semibold">/mês</span></p>
+              <ul class="mt-5 space-y-2 text-[var(--ink-80)] text-sm">
+                <li>• Selo digital + QR dinâmico</li>
+                <li>• Entradas de lote mensais</li>
+                <li>• Canal WhatsApp prioritário</li>
+                <li>• Acesso ao painel</li>
+              </ul>
+              <div class="mt-7"><a href="#contato" class="btn-primary">Assinar</a></div>
+            </div>
 
-    <footer class="pt-10 pb-12 border-t border-[var(--stroke)] bg-[var(--footer-bg)]">
-      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-        <a href="https://wa.me/5513982259477" class="btn-primary !py-2">Falar no WhatsApp</a>
-        <div class="flex items-center gap-4 text-[var(--ink-75)]">
-          <a href="#" aria-label="Instagram">@bebidaselada</a><span>•</span><a href="#" aria-label="LinkedIn">/empresa/bebidaselada</a>
+            <div class="plan-card p-6 reveal">
+              <div class="text-xs inline-block mb-2 px-2 py-1 rounded bg-black/5 border border-[var(--stroke)]">Mais escolhido</div>
+              <h3 class="font-bold text-[var(--ink-95)]">Pro</h3>
+              <p class="mt-2 text-[var(--ink-70)]">Mais lotes e recursos avançados.</p>
+              <p class="mt-4 text-[13px] text-[var(--ink-70)] line-through">R$ 247</p>
+              <p class="text-2xl font-extrabold text-[var(--ink-95)]">R$ 189<span class="text-base font-semibold">/mês</span></p>
+              <ul class="mt-5 space-y-2 text-[var(--ink-80)] text-sm">
+                <li>• Tudo do Essencial</li>
+                <li>• Painel de lotes avançado</li>
+                <li>• Auditorias ampliadas</li>
+                <li>• Destaque na Rede Segura</li>
+              </ul>
+              <div class="mt-7"><a href="#contato" class="btn-primary">Assinar</a></div>
+            </div>
+
+            <div class="plan-card p-6 reveal">
+              <h3 class="font-bold text-[var(--ink-95)]">Pro+</h3>
+              <p class="mt-2 text-[var(--ink-70)]">Sob consulta</p>
+              <ul class="mt-5 space-y-2 text-[var(--ink-80)] text-sm">
+                <li>• Lotes ilimitados</li>
+                <li>• Auditoria contínua</li>
+                <li>• Suporte dedicado e SLA</li>
+                <li>• Integrações</li>
+              </ul>
+              <div class="mt-7"><a href="#contato" class="btn-primary">Solicitar proposta</a></div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="container mx-auto px-4">
-        <p class="mt-6 text-[var(--ink-60)] text-sm">© 2025 Bebida Selada® — Confiança que se vê. Tecnologia de rastreabilidade e certificação digital de bebidas.</p>
+      </section>
+
+      <section id="representantes" class="py-16 md:py-20 bg-[var(--bg)]">
+        <div class="container px-4">
+          <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)] reveal">Representantes Digitais</h2>
+          <p class="mt-2 text-[var(--ink-80)] max-w-3xl reveal">Ganhe renda recorrente indicando novos estabelecimentos. Seja o elo da confiança em sua região e receba comissão mensal em cada certificação ativa.</p>
+          <div class="mt-6 grid md:grid-cols-4 gap-4">
+            <div class="rep-card p-4 text-center">Comissão recorrente</div>
+            <div class="rep-card p-4 text-center">Materiais prontos</div>
+            <div class="rep-card p-4 text-center">Treinamento rápido</div>
+            <div class="rep-card p-4 text-center">Suporte dedicado</div>
+          </div>
+          <div class="mt-6 flex justify-center">
+            <a href="#contato" class="btn-primary">Quero ser representante agora</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="py-16 md:py-20 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,.04))]">
+        <div class="container px-4">
+          <h2 class="text-2xl md:text-4xl font-extrabold text-[var(--ink-95)]">Perguntas frequentes</h2>
+          <div class="mt-6 space-y-3">
+            <details class="faq-item"><summary class="faq-q">Como funciona a verificação do selo?</summary><p>O QR aciona uma auditoria digital que valida lotes, auditor responsável e última verificação.</p></details>
+            <details class="faq-item"><summary class="faq-q">Sou pequeno empreendedor. Vale a pena?</summary><p>Sim. O selo aumenta a confiança, reduz risco percebido e melhora a experiência do cliente.</p></details>
+            <details class="faq-item"><summary class="faq-q">Quais são os planos e valores?</summary><p>Essencial (R$ 119/mês), Pro (R$ 189/mês) e Pro+ (sob consulta).</p></details>
+            <details class="faq-item"><summary class="faq-q">Como me torno Representante Digital?</summary><p>Preencha o formulário e selecione “Quero ser representante”. Nossa equipe fará o onboarding.</p></details>
+            <details class="faq-item"><summary class="faq-q">O programa tem custo para a Prefeitura?</summary><p>Não. A implantação é gratuita e financiada pelos estabelecimentos participantes.</p></details>
+            <details class="faq-item"><summary class="faq-q">O que vem no Kit Físico?</summary><p>Selo oficial, QR ativado, Manual e Certificado de Autenticidade.</p></details>
+          </div>
+        </div>
+      </section>
+
+      <section id="contato" class="py-8 bg-[var(--bg)]"></section>
+    </main>
+
+    <footer class="py-10">
+      <div class="container px-4 text-center">
+        <p class="text-[var(--ink-80)]">Programa nacional de certificação digital de bebidas — unindo tecnologia, segurança e confiança para proteger o consumidor brasileiro.</p>
+        <p class="mt-2"><a href="mailto:contato@bebidaselada.com.br" class="underline">Fale com nossa equipe</a></p>
+        <div class="mt-4 space-y-1 text-[var(--ink-75)]">
+          <div>© 2025 Bebida Selada® — Confiança que se vê.</div>
+          <div>Tecnologia de rastreabilidade e certificação digital de bebidas.</div>
+        </div>
       </div>
     </footer>
 
-    <!-- MODAIS -->
-    <div id="verifyModal" class="invisible opacity-0 fixed inset-0 z-[60] grid place-items-center transition-all">
+    <div id="verifyModal" class="invisible opacity-0 fixed inset-0 z-[60] grid place-items-center transition-all" role="dialog" aria-modal="true" aria-label="Verificação do selo">
       <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
       <div class="relative w-[94%] max-w-xl rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-5 md:p-6 shadow-2xl">
         <button id="closeModal" class="absolute right-4 top-4 text-[var(--ink-60)] hover:text-[var(--ink-90)]" aria-label="Fechar">✕</button>
-        <div id="stateChecking" class="flex flex-col items-center text-center gap-3">
-          <div class="loader"></div><h3 class="text-xl font-bold text-[var(--ink-95)]">Verificando selo…</h3><p class="text-[var(--ink-70)]">Conectando à Rede Segura Nacional e validando auditoria.</p>
+        <div id="stateChecking" class="flex flex-col items-center text-center gap-3 py-10">
+          <div class="loader"></div>
+          <h3 class="text-xl font-bold text-[var(--ink-95)]">Verificando selo…</h3>
+          <p class="text-[var(--ink-70)]">Conectando à Rede Segura Nacional e validando auditoria.</p>
         </div>
-        <div id="stateResult" class="hidden">
-          <div class="flex items-center gap-2"><div class="h-6 w-6 rounded-full grid place-items-center bg-emerald-500/15 border border-emerald-500 text-emerald-500">✔</div><h3 class="text-xl font-bold text-[var(--ink-95)]">Selo válido e aprovado</h3></div>
-          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-[15px]">
-            <div class="info"><span class="k">Estabelecimento</span><span class="v" id="resNome">Adega Modelo</span></div>
-            <div class="info"><span class="k">Cidade/UF</span><span class="v" id="resCidade">Peruíbe/SP</span></div>
-            <div class="info"><span class="k">Lote</span><span class="v" id="resLote">LOT-PRD-2025-10-A13</span></div>
-            <div class="info"><span class="k">Auditor</span><span class="v" id="resAuditor">E. Rocha</span></div>
-            <div class="info sm:col-span-2"><span class="k">Última validação</span><span class="v" id="resData">15/10/2025 09:42</span></div>
+        <div id="stateResult" class="hidden text-center relative py-4">
+          <div class="flex flex-col items-center justify-center gap-3 mt-2">
+            <div class="h-14 w-14 rounded-full grid place-items-center bg-emerald-500/10 border-2 border-emerald-500 text-emerald-500 text-2xl font-bold">✓</div>
+            <h3 class="text-xl font-bold text-[var(--ink-95)]">Selo válido e aprovado — Confiança confirmada</h3>
+            <p class="text-[var(--ink-75)] max-w-sm leading-relaxed">Confiança confirmada pela Rede Segura Nacional.</p>
           </div>
-          <div class="mt-4 p-3 rounded-xl border border-[var(--stroke)] bg-[var(--panel-boost)] text-[var(--ink-85)]"><p><strong>Este selo foi validado digitalmente pela Rede Segura Nacional.</strong> Auditoria ativa, rastreabilidade confirmada e origem autenticada.</p></div>
-          <div class="mt-5 flex flex-wrap gap-3"><button id="btnBrinde" class="btn-primary">Resgatar brinde digital</button><button id="btnCompartilhar" class="btn-ghost">Compartilhar</button></div>
-        </div>
-        <div id="stateReward" class="hidden text-center relative">
-          <div class="mx-auto mb-3 h-20 w-20 rounded-2xl grid place-items-center border border-[var(--gold-60)]/50 bg-[var(--gold-soft)]/30 text-[var(--gold-90)] font-bold">🏅</div>
-          <h3 class="text-xl font-bold text-[var(--ink-95)]">Badge “Confiança Selada”</h3>
-          <p class="mt-1 text-[var(--ink-70)]">Você desbloqueou um brinde digital exclusivo. Salve e compartilhe.</p>
-          <div class="mt-4 flex items-center justify-center gap-3"><a id="downloadBadge" class="btn-primary" download="bebida-selada-badge.png">Baixar badge</a><button id="backToResult" class="btn-ghost">Voltar</button></div>
-          <canvas id="confetti" class="absolute inset-0 pointer-events-none"></canvas>
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-[15px] text-left max-w-md mx-auto">
+            <div class="info"><span class="k">Estabelecimento</span> <span class="v" id="resNome"></span></div>
+            <div class="info"><span class="k">Cidade/UF</span> <span class="v" id="resCidade"></span></div>
+            <div class="info"><span class="k">Lote</span> <span class="v" id="resLote"></span></div>
+            <div class="info"><span class="k">Auditor</span> <span class="v" id="resAuditor"></span></div>
+            <div class="info sm:col-span-2"><span class="k">Última validação</span> <span class="v" id="resData"></span></div>
+          </div>
+          <div class="mt-5 text-[13px] text-[var(--ink-70)]">🛡️ Auditado via <strong>Rede Segura Nacional</strong> — Hash verificado</div>
+          <div class="mt-4 p-3 rounded-xl border border-[var(--stroke)] bg-[var(--panel-boost)] text-[var(--ink-85)] max-w-md mx-auto">
+            <p><strong>Validação digital concluída.</strong><br/>Auditoria ativa, rastreabilidade confirmada e origem autenticada.</p>
+          </div>
+          <div class="mt-6 flex flex-wrap justify-center gap-3">
+            <button id="btnCompartilhar" class="btn-primary">📤 Compartilhar conquista</button>
+            <button id="closeModal" class="btn-ghost">Fechar</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div id="planModal" class="invisible opacity-0 fixed inset-0 z-[70] grid place-items-center transition-all">
-      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-      <div class="relative w-[94%] max-w-2xl rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] p-6 shadow-2xl">
-        <button id="closePlanModal" class="absolute right-4 top-4 text-[var(--ink-60)] hover:text-[var(--ink-90)]">✕</button>
-        <h3 id="planTitle" class="text-2xl font-extrabold text-[var(--ink-95)]">Detalhes do plano</h3>
-        <p id="planPrice" class="mt-1 text-[var(--ink-75)]"></p>
-        <ul id="planBenefits" class="mt-4 space-y-2 text-[var(--ink-85)] text-[15px]"></ul>
-        <div class="mt-6 flex gap-3"><a href="#contato" class="btn-primary">Assinar agora</a><button id="planTalk" class="btn-ghost">Falar no WhatsApp</button></div>
+    <div id="pwaBanner" class="pwa-banner md:hidden fixed inset-x-3 bottom-3 z-[80] rounded-2xl border border-[var(--stroke)] bg-[var(--panel)] shadow-2xl p-3 hidden">
+      <div class="flex items-center gap-3">
+        <img src="img/icon-192.png" alt="Adicionar à tela inicial" class="w-10 h-10 rounded" loading="lazy" decoding="async"/>
+        <div class="text-sm">
+          <div class="font-semibold text-[var(--ink-90)]">Adicionar à tela inicial</div>
+          <div class="text-[var(--ink-75)]">Leve a confiança com você. Instale o app Bebida Selada® e verifique selos em qualquer lugar.</div>
+        </div>
+        <div class="ml-auto flex gap-2">
+          <button id="pwaDismiss" class="btn-ghost px-3 py-1">Agora não</button>
+          <button id="pwaInstall" class="btn-primary px-3 py-1">Instalar</button>
+        </div>
       </div>
     </div>
 
