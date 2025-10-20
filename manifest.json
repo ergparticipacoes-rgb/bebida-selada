@@ -1,27 +1,13 @@
 {
-  "name": "Bebida Selada® — Confiança que se vê",
+  "name": "Bebida Selada®",
   "short_name": "Bebida Selada",
-  "description": "Sistema oficial de certificação e rastreabilidade digital de bebidas — confiança que se vê, transparência que se comprova.",
+  "description": "A primeira certificação digital de bebidas do Brasil. Transparência em segundos, confiança para sempre.",
   "start_url": "/index.html",
-  "scope": "/",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#FFFFFF",
+  "background_color": "#1B424E",
   "theme_color": "#1B424E",
-  "lang": "pt-BR",
-  "dir": "ltr",
-  "categories": [
-    "business",
-    "technology",
-    "food",
-    "certification"
-  ],
+  "orientation": "portrait",
   "icons": [
-    {
-      "src": "img/favicon.ico",
-      "sizes": "48x48",
-      "type": "image/x-icon"
-    },
     {
       "src": "img/icon-192.png",
       "sizes": "192x192",
@@ -31,12 +17,6 @@
       "src": "img/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
-    },
-    {
-      "src": "img/maskable-icon.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
     }
   ]
 }
