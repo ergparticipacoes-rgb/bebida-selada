@@ -1,1 +1,3 @@
-const CACHE_NAME="bebida-selada-v47";const ASSETS=["/","/index.html","/styles.css","/app.js","/offline.html","/img/icon-192.png","/img/icon-512.png"];self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE_NAME).then(e=>e.addAll(ASSETS)))});self.addEventListener("fetch",e=>{e.respondWith(fetch(e.request).catch(()=>caches.match(e.request).then(t=>t||caches.match("/offline.html"))))});self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(e=>Promise.all(e.filter(e=>e!==CACHE_NAME).map(e=>caches.delete(e)))))}); 
+self.addEventListener('install', e=>{ self.skipWaiting(); });
+self.addEventListener('activate', e=>{ return self.clients.claim(); });
+self.addEventListener('fetch', e=>{ /* passthrough */ });
