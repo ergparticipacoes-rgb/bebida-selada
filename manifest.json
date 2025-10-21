@@ -1,9 +1,23 @@
 {
-  "name": "Bebida Selada",
-  "short_name": "BebidaSelada",
-  "start_url": "index.html",
-  "display": "standalone",
-  "background_color": "#182126",
-  "theme_color": "#182126",
-  "icons": []
+    "name": "Bebida Selada® - Confiança que se Vê",
+    "short_name": "Bebida Selada",
+    "description": "Sistema nacional de certificação digital de bebidas, conectando consumidores e estabelecimentos.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#0A1C22",
+    "theme_color": "#1B424E",
+    "icons": [
+        {
+            "src": "images/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+        // Recomendado: Adicionar ícones de 144x144, 256x256, etc.
+    ]
 }
