@@ -4,244 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bebida Selada® | Confiança que se Vê - Certificação Digital Nacional</title>
-    <meta name="description" content="Sistema nacional de certificação digital para bebidas. Conectando consumidores, estabelecimentos e órgãos públicos pela Rede Segura Nacional.">
+    <meta name="description" content="Sistema nacional de certificação, auditoria e verificação digital de bebidas. Conecte-se à Rede Segura Nacional.">
+    
+    <meta property="og:title" content="Bebida Selada® | Confiança que se Vê">
+    <meta property="og:description" content="Sistema nacional de certificação, auditoria e verificação digital de bebidas. Conecte-se à Rede Segura Nacional.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.bebidaselada.com">
     <link rel="manifest" href="manifest.json">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <style>
-        /* Variáveis CSS para a Paleta e Padrões */
-        :root {
-            --cor-primaria: #1B424E; /* Azul-petróleo */
-            --cor-destaque: #EDC765; /* Dourado */
-            --cor-texto-claro: #F5F5F5;
-            --cor-fundo-claro: #E0E0E0;
-            --font-principal: 'Inter', sans-serif;
-            --borda-raio: 18px;
-            --sombra-padrao: 0 10px 30px rgba(0,0,0,.35);
-            --transicao-padrao: 0.25s ease-in-out;
-            --max-largura: 1440px;
-        }
-
-        /* Reset Básico */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-principal);
-            color: var(--cor-texto-claro);
-            /* Fundo principal: Gradiente ouro sobre fumaça */
-            background: linear-gradient(135deg, var(--cor-primaria) 0%, #0A1C22 50%, #050E11 100%);
-            min-height: 100vh;
-            line-height: 1.6;
-            overflow-x: hidden; /* Evita scroll lateral por segurança */
-        }
-
-        /* Container Limitador */
-        .container {
-            max-width: var(--max-largura);
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        
-        /* Tipografia e Títulos */
-        h1, h2, h3 {
-            font-weight: 800; /* Extra Bold */
-            color: var(--cor-destaque);
-            margin-bottom: 0.5em;
-        }
-        
-        p {
-            font-weight: 400;
-        }
-
-        /* Estilo do Botão (Base) - Padrão Dourado e Sombra */
-        .btn-principal {
-            display: inline-block;
-            padding: 14px 28px;
-            background-color: var(--cor-destaque);
-            color: var(--cor-primaria);
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: var(--borda-raio);
-            transition: var(--transicao-padrao);
-            cursor: pointer;
-            /* Botões: border:1px solid rgba(237,199,101,.25) */
-            border: 1px solid rgba(237,199,101, .25);
-            box-shadow: var(--sombra-padrao);
-        }
-
-        /* Efeito Hover Elevado (Fase 2) */
-        .btn-principal:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(237,199,101,0.5); /* Sombra mais destacada no hover */
-            opacity: 0.9;
-        }
-
-        /* 1. Header/Menu */
-        .header {
-            background-color: rgba(27, 66, 78, 0.9); /* Azul-petróleo semi-transparente */
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(237,199,101,0.1);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--cor-destaque);
-            text-decoration: none;
-        }
-
-        .nav-menu a {
-            color: var(--cor-texto-claro);
-            text-decoration: none;
-            margin-left: 25px;
-            font-weight: 600;
-            transition: color var(--transicao-padrao);
-        }
-
-        .nav-menu a:hover {
-            color: var(--cor-destaque);
-        }
-        
-        /* 2. Hero (Confiança que se vê) */
-        .hero {
-            padding: 100px 0;
-            text-align: center;
-            background: radial-gradient(circle at top right, rgba(237,199,101,0.15) 0%, transparent 50%); /* Efeito de brilho */
-        }
-        
-        .hero-titulo {
-            font-size: 3.5rem;
-            margin-bottom: 0.25em;
-            text-transform: uppercase;
-        }
-        
-        .hero-subtitulo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--cor-fundo-claro);
-            margin-bottom: 2em;
-        }
-
-        /* Estilo do QR Code (Simulado) */
-        .hero-qr {
-            width: 200px;
-            height: 200px;
-            margin: 30px auto;
-            background-color: var(--cor-texto-claro);
-            border: 5px solid var(--cor-destaque); /* Borda dourada */
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--sombra-padrao);
-        }
-        
-        /* Efeito de Varredura Branco (Simulação) */
-        .hero-qr::after {
-            content: '';
-            position: absolute;
-            top: -50px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.8), rgba(255,255,255,0.1));
-            animation: varredura 3s infinite linear;
-        }
-
-        @keyframes varredura {
-            0% { top: -50px; }
-            50% { top: 250px; }
-            100% { top: -50px; }
-        }
-
-        /* Seções (Blocos) */
-        .secao {
-            padding: 80px 0;
-        }
-
-        .secao h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1.5em;
-        }
-
-        /* 4. Planos de Certificação (Exemplo de Card) */
-        .planos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card-plano {
-            background-color: var(--cor-primaria);
-            border-radius: var(--borda-raio);
-            padding: 30px;
-            text-align: center;
-            box-shadow: var(--sombra-padrao);
-            border: 1px solid rgba(237,199,101,.1);
-            transition: transform var(--transicao-padrao);
-        }
-        
-        /* Efeito Hover (Fase 2) */
-        .card-plano:hover {
-            transform: translateY(-5px);
-            border-color: var(--cor-destaque);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
-        }
-
-        .card-plano h3 {
-            color: var(--cor-destaque);
-            margin-bottom: 15px;
-            font-size: 1.7rem;
-        }
-        
-        .card-plano ul {
-            list-style: none;
-            margin: 20px 0;
-            text-align: left;
-            color: var(--cor-fundo-claro);
-        }
-        
-        .card-plano ul li::before {
-            content: '✓';
-            color: var(--cor-destaque);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-        }
-
-        /* Responsividade (Min 360px -> Max 1440px) */
-        @media (max-width: 768px) {
-            .hero-titulo {
-                font-size: 2.5rem;
-            }
-            
-            .header-content {
-                flex-direction: column;
-            }
-            
-            .nav-menu {
-                margin-top: 15px;
-            }
-            
-            .nav-menu a {
-                margin: 0 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
 
@@ -249,128 +22,221 @@
         <div class="container header-content">
             <a href="#" class="logo">BEBIDA SELADA®</a>
             <nav class="nav-menu">
-                <a href="#estabelecimento">Estabelecimento</a>
+                <a href="#estabelecimento">Estabelecimentos</a>
                 <a href="#planos">Planos</a>
                 <a href="#rede">Rede Segura</a>
+                <a href="#cidades">Para Cidades</a>
                 <a href="#faq">FAQ</a>
-                <a href="#contato" class="btn-principal">Fale Conosco</a>
+                <a href="#contato" class="btn-principal">Auditoria Rápida</a>
             </nav>
         </div>
     </header>
 
-    <section class="secao hero">
-        <div class="container">
-            <h1 class="hero-titulo">Confiança que se Vê.</h1>
-            <p class="hero-subtitulo">O sistema nacional de certificação digital que garante a procedência da bebida.</p>
-            
-            <div id="simulador-auditoria">
-                <input type="text" id="seal-input" placeholder="Digite o Código do Selo (ex: BS-1234)" style="padding: 15px; border-radius: var(--borda-raio); border: none; width: 300px; margin-right: 15px; font-size: 1rem;">
-                <button class="btn-principal" onclick="simularAuditoria()">AUDITAR AGORA</button>
-                <div id="resultado-auditoria" style="margin-top: 20px; font-weight: 600;"></div>
-            </div>
-            
-            <p style="margin-top: 40px; font-size: 0.9rem; font-weight: 600;">Escaneie o QR Code para ver um exemplo de selo verificado:</p>
-            <div class="hero-qr">
-                </div>
-        </div>
-    </section>
-
-    <section class="secao" id="estabelecimento">
-        <div class="container">
-            <h2>Certifique seu Estabelecimento.</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Garanta a segurança e a confiança dos seus clientes com o Selo Bebida Selada®. Receba o Kit Físico exclusivo e entre para a Rede Segura Nacional.</p>
-            <div style="text-align: center;">
-                <a href="#" class="btn-principal" style="background-color: var(--cor-texto-claro); color: var(--cor-primaria); font-size: 1.1rem;">QUERO SER UM ESTABELECIMENTO CERTIFICADO</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="secao" id="planos" style="background-color: rgba(0,0,0,0.2);">
-        <div class="container">
-            <h2>Planos de Certificação</h2>
-            <div class="planos-grid">
-                <div class="card-plano">
-                    <h3>SELOS ESSENCIAIS</h3>
-                    <p>Ideal para pequenos estabelecimentos.</p>
-                    <ul>
-                        <li>Ativação de 100 Selos Digitais/Mês</li>
-                        <li>Consulta Pública Ilimitada</li>
-                        <li>Acesso à Rede Segura Nacional</li>
-                    </ul>
-                    <a href="#" class="btn-principal">SABER MAIS</a>
+    <main>
+        <section class="secao hero">
+            <div class="container">
+                <h1 class="hero-titulo">Confiança que se Vê.</h1>
+                <p class="hero-subtitulo">O sistema nacional de certificação digital que garante a **procedência** da bebida.</p>
+                
+                <div id="simulador-auditoria">
+                    <input type="text" id="seal-input" placeholder="Digite o Código do Selo (ex: BS-1234)" aria-label="Código do Selo" required>
+                    <button class="btn-principal" onclick="simularAuditoria()">AUDITAR AGORA</button>
+                    <div id="resultado-auditoria" style="margin-top: 20px; font-weight: 600;"></div>
                 </div>
                 
-                <div class="card-plano" style="border-width: 3px; background-color: rgba(237,199,101,0.08);">
-                    <p style="color: var(--cor-destaque); font-weight: 700; margin-bottom: 5px;">MAIS VENDIDO</p>
-                    <h3>SELOS ILIMITADOS</h3>
-                    <p>O pacote completo com auditoria e suporte.</p>
-                    <ul>
-                        <li>Ativação Ilimitada de Selos Digitais</li>
-                        <li>Kit Físico Premium (Adesivos e Placa)</li>
-                        <li>Auditoria e Monitoramento Remoto</li>
-                    </ul>
-                    <a href="#" class="btn-principal" style="background-color: var(--cor-destaque); color: var(--cor-primaria);">ASSINAR AGORA</a>
-                </div>
-                
-                <div class="card-plano">
-                    <h3>CORPORATIVO</h3>
-                    <p>Para redes e grandes eventos.</p>
-                    <ul>
-                        <li>APIs de Integração Personalizadas</li>
-                        <li>Painel de Gestão Centralizado</li>
-                        <li>Treinamento de Equipe e Suporte 24h</li>
-                    </ul>
-                    <a href="#" class="btn-principal">ENTRAR EM CONTATO</a>
-                </div>
+                <p style="margin-top: 40px; font-size: 0.9rem; font-weight: 600;">Escaneie o QR Code no seu Kit Físico para iniciar a verificação:</p>
+                <div class="hero-qr">
+                    </div>
             </div>
-        </div>
-    </section>
-
-    <section class="secao" id="rede">
         </section>
+
+        <section class="secao" id="estabelecimento">
+            <div class="container">
+                <h2>O Padrão Ouro em Segurança.</h2>
+                <div class="bloco-conteudo">
+                    <div class="bloco-texto">
+                        <p>Adesão à Bebida Selada® é um ato de responsabilidade e transparência. Em um mercado onde a fraude é invisível, nós tornamos a **confiança visível**.</p>
+                        <h3>Seu Estabelecimento no Mapa da Confiança:</h3>
+                        <ul>
+                            <li>Receba o **Kit Físico Premium**: Selos, adesivos de vitrine e placa de certificação.</li>
+                            <li>Acesso ao Painel de Auditoria e Gestão de Selos.</li>
+                            <li>Visibilidade nacional na **Rede Segura Nacional**.</li>
+                        </ul>
+                        <p style="margin-top: 30px;">Pronto para sair da sombra da incerteza? Certifique-se hoje.</p>
+                        <a href="#planos" class="btn-principal" style="background-color: var(--cor-destaque); color: var(--cor-primaria); font-size: 1.1rem; margin-top: 20px;">QUERO O SELO DE CERTIFICAÇÃO</a>
+                    </div>
+                    <div class="bloco-imagem" style="background-color: rgba(237,199,101,0.1); height: 350px; border-radius: var(--borda-raio); margin-top: 30px;">
+                        <p style="padding-top: 150px; text-align: center; color: var(--cor-destaque);">[IMAGEM: Kit Físico (Placa, Selos e Adesivos)]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao" id="planos">
+            <div class="container">
+                <h2>Planos de Certificação</h2>
+                <p style="text-align: center; max-width: 800px; margin: -20px auto 50px; color: var(--cor-fundo-claro);">Escolha o plano que melhor se adapta ao volume e à necessidade de auditoria do seu negócio.</p>
+                <div class="planos-grid">
+                    <div class="card-plano">
+                        <h3>SELOS ESSENCIAIS</h3>
+                        <p>Ideal para bares e pequenos distribuidores.</p>
+                        <ul>
+                            <li>Ativação de 100 Selos Digitais/Mês</li>
+                            <li>Consulta Pública Ilimitada (Rede Segura)</li>
+                            <li>Relatórios Básicos de Verificação</li>
+                        </ul>
+                        <a href="#" class="btn-principal">VER DETALHES</a>
+                    </div>
+                    
+                    <div class="card-plano destaque-plano" style="border-width: 3px;">
+                        <p class="tag-destaque" style="color: var(--cor-destaque); font-weight: 700; margin-bottom: 5px;">⭐ MAIS POPULAR</p>
+                        <h3>SELOS ILIMITADOS</h3>
+                        <p>O pacote completo para restaurantes e redes.</p>
+                        <ul>
+                            <li>Ativação Ilimitada de Selos Digitais</li>
+                            <li>**Kit Físico Premium Completo**</li>
+                            <li>Auditoria Remota e Suporte Prioritário</li>
+                        </ul>
+                        <a href="#" class="btn-principal" style="background-color: var(--cor-destaque); color: var(--cor-primaria);">ASSINAR AGORA</a>
+                    </div>
+                    
+                    <div class="card-plano">
+                        <h3>CORPORATIVO / REDES</h3>
+                        <p>Para grandes eventos e distribuições estaduais.</p>
+                        <ul>
+                            <li>APIs de Integração Personalizadas (Fase 7)</li>
+                            <li>Painel de Gestão Centralizado Multi-Unidade</li>
+                            <li>Gestor de Contas Dedicado e Treinamento</li>
+                        </ul>
+                        <a href="#" class="btn-principal">ENTRAR EM CONTATO</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao" id="rede" style="background-color: rgba(0,0,0,0.3); padding-top: 100px; padding-bottom: 100px;">
+            <div class="container" style="text-align: center;">
+                <p style="color: var(--cor-destaque); font-weight: 700; font-size: 1.2rem; margin-bottom: 10px;">PROVA SOCIAL & SEGURANÇA</p>
+                <h2>A Confiança de Milhões.</h2>
+                <p style="max-width: 900px; margin: 0 auto 50px; font-size: 1.1rem;">A Rede Segura Nacional é a base de dados de autenticidade que conecta milhões de consumidores, milhares de estabelecimentos e órgãos de fiscalização em tempo real. **Confiança que se vê.**</p>
+                
+                <div class="indicadores-rede" style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 40px;">
+                    <div style="margin: 20px; flex-basis: 200px;">
+                        <h3 style="font-size: 3rem;">+5K</h3>
+                        <p>Estabelecimentos Ativos</p>
+                    </div>
+                    <div style="margin: 20px; flex-basis: 200px;">
+                        <h3 style="font-size: 3rem;">+1M</h3>
+                        <p>Auditorias Feitas (Mês)</p>
+                    </div>
+                    <div style="margin: 20px; flex-basis: 200px;">
+                        <h3 style="font-size: 3rem;">100%</h3>
+                        <p>Dados Criptografados (Fase 7)</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class="secao" id="cidades">
+            <div class="container">
+                <h2>Programa para Cidades e Órgãos Públicos</h2>
+                <div class="bloco-conteudo" style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <p>A Bebida Selada® é a ferramenta ideal para Prefeituras e Secretarias de Segurança. Oferecemos um **Painel de Monitoramento Fiscalizador** em tempo real (Fase 7), permitindo o combate eficaz à fraude e a proteção da saúde pública municipal.</p>
+                        <ul style="list-style: none; margin-top: 20px;">
+                            <li style="margin-bottom: 10px; color: var(--cor-destaque); font-weight: 600;">Ferramenta de Fiscalização Integrada.</li>
+                            <li style="margin-bottom: 10px; color: var(--cor-destaque); font-weight: 600;">Indicadores de Segurança por Bairro.</li>
+                            <li style="margin-bottom: 10px; color: var(--cor-destaque); font-weight: 600;">Certificado Digital de Adesão (Fase 6).</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1; min-width: 300px;">
+                        <a href="#" class="btn-principal" style="width: 100%; text-align: center; padding: 20px; font-size: 1.2rem; background-color: var(--cor-primaria); color: var(--cor-destaque); border-color: var(--cor-destaque);">
+                            SOLICITAR PAINEL GESTOR PÚBLICO
+                        </a>
+                        <p style="margin-top: 15px; text-align: center; font-size: 0.9rem;">Preencha o formulário e agende uma demonstração exclusiva.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao" id="representantes" style="background-color: rgba(237,199,101,0.05);">
+            <div class="container" style="text-align: center;">
+                <h2>Seja um Representante Digital Bebida Selada®</h2>
+                <p style="max-width: 700px; margin: 0 auto 30px;">Faça parte da nossa expansão nacional. Cadastre estabelecimentos e cidades e receba comissões em tempo real diretamente no seu Painel (Fase 5).</p>
+                
+                <a href="#" class="btn-principal" style="background-color: var(--cor-destaque); color: var(--cor-primaria); font-size: 1.1rem; padding: 16px 32px;">QUERO SER REPRESENTANTE</a>
+                <p style="margin-top: 15px; font-size: 0.9rem;">Oportunidade de negócio em um mercado em crescimento exponencial.</p>
+            </div>
+        </section>
+
+        <section class="secao" id="faq">
+            <div class="container">
+                <h2>Perguntas Frequentes (FAQ)</h2>
+                <div class="faq-lista" style="max-width: 900px; margin: 0 auto;">
+                    <details class="faq-item">
+                        <summary style="font-weight: 700; padding: 15px; border-bottom: 1px solid rgba(237,199,101,0.2); cursor: pointer; color: var(--cor-destaque);">O que é o Selo Bebida Selada®?</summary>
+                        <p style="padding: 15px; background-color: rgba(27, 66, 78, 0.5); border-radius: 0 0 var(--borda-raio) var(--borda-raio);">É um código único (UUID) com hash SHA-256 (Fase 7) que, ao ser lido pelo consumidor ou fiscal, confirma a autenticidade, procedência e a certificação do estabelecimento em tempo real.</p>
+                    </details>
+                    
+                    <details class="faq-item" style="margin-top: 10px;">
+                        <summary style="font-weight: 700; padding: 15px; border-bottom: 1px solid rgba(237,199,101,0.2); cursor: pointer; color: var(--cor-destaque);">Qual é o custo para o meu estabelecimento?</summary>
+                        <p style="padding: 15px; background-color: rgba(27, 66, 78, 0.5); border-radius: 0 0 var(--borda-raio) var(--borda-raio);">O custo varia conforme o plano de certificação (Fase 4). Temos opções a partir do Selo Essencial (100 selos/mês) até o Ilimitado, que inclui o Kit Físico e monitoramento.</p>
+                    </details>
+                    
+                    <details class="faq-item" style="margin-top: 10px;">
+                        <summary style="font-weight: 700; padding: 15px; border-bottom: 1px solid rgba(237,199,101,0.2); cursor: pointer; color: var(--cor-destaque);">Como faço para me tornar um representante?</summary>
+                        <p style="padding: 15px; background-color: rgba(27, 66, 78, 0.5); border-radius: 0 0 var(--borda-raio) var(--borda-raio);">Basta clicar no botão "QUERO SER REPRESENTANTE" e preencher o formulário de interesse. Analisamos seu perfil e liberamos o acesso ao Painel de Comissões e Captação de Leads (Fase 3/5).</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer class="secao" style="padding: 50px 0; background-color: var(--cor-primaria);">
         <div class="container" style="text-align: center;">
-            <p style="margin-bottom: 20px;">Tem dúvidas? Fale com nosso time de especialistas!</p>
-            <a href="https://wa.me/seunumerowhatsapp" class="btn-principal" target="_blank" id="contato" style="background-color: #25D366; color: white;">
-                <span style="font-size: 1.1rem;">💬 WhatsApp: Fale Conosco Agora</span>
+            <p style="margin-bottom: 20px;">Tem dúvidas sobre planos ou adesão? Fale com nosso time de especialistas!</p>
+            <a href="https://wa.me/55xx9xxxxxxxx" class="btn-principal" target="_blank" id="contato" style="background-color: #25D366; color: white;">
+                <span style="font-size: 1.1rem;">📞 WhatsApp: Fale Conosco Agora</span>
             </a>
-            <p style="margin-top: 30px; font-size: 0.8rem; color: rgba(255,255,255,0.7);">© 2025 Bebida Selada®. Todos os direitos reservados. Confiança que se vê.</p>
+            <p style="margin-top: 30px; font-size: 0.8rem; color: rgba(255,255,255,0.7);">© 2025 Bebida Selada®. Todos os direitos reservados. Confiança que se vê. <br>Versão: v4.7 Executive Refine | Road to Production.</p>
         </div>
     </footer>
     
     <script>
-        // JS Puro: Função para Simulação de Auditoria (Entrega Base)
+        // Função para Simulação de Auditoria (Loading -> Resultado Inline)
         function simularAuditoria() {
-            const input = document.getElementById('seal-input').value.toUpperCase().trim();
+            const input = document.getElementById('seal-input');
             const resultadoDiv = document.getElementById('resultado-auditoria');
+            const sealId = input.value.toUpperCase().trim();
             
-            if (!input) {
+            if (!sealId) {
                 resultadoDiv.innerHTML = '<span style="color: #EDC765;">&#9888; Por favor, insira um código de selo.</span>';
                 return;
             }
 
             // Simulação de Loading
             resultadoDiv.innerHTML = '<span style="color: #E0E0E0;">⏳ Validando selo na Rede Segura Nacional...</span>';
-
+            
+            // Simulação do resultado (delay de 2 segundos)
             setTimeout(() => {
-                // Lógica de Simulação
-                if (input.startsWith('BS-') && input.length >= 6) {
-                    // Simulação de Resultado Positivo
-                    resultadoDiv.innerHTML = '<span style="color: #4CAF50;">✅ **SELO AUTÊNTICO.** Estabelecimento certificado e bebida verificada.</span>';
+                if (sealId.startsWith('BS-') && sealId.length >= 6) {
+                    // Resultado Positivo
+                    resultadoDiv.innerHTML = '<span style="color: #4CAF50;">✅ **SELO AUTÊNTICO.** Estabelecimento certificado ' + sealId + '. Status: Ativo.</span>';
                 } else {
-                    // Simulação de Resultado Negativo
+                    // Resultado Negativo
                     resultadoDiv.innerHTML = '<span style="color: #F44336;">❌ **ALERTA DE FRAUDE.** Selo não encontrado ou inválido. Denuncie!</span>';
                 }
                 
                 // Limpa o resultado após 10 segundos
                 setTimeout(() => {
                     resultadoDiv.innerHTML = '';
+                    input.value = '';
                 }, 10000);
-            }, 2000); // 2 segundos de atraso para simular o "loading"
+            }, 2000); 
         }
         
-        // JS Puro: Registro do Service Worker (para PWA)
+        // Registro do Service Worker (para PWA)
         if ('serviceWorker' in navigator) {
           window.addEventListener('load', () => {
             navigator.serviceWorker.register('/service-worker.js').then(registration => {
