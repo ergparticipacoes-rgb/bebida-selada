@@ -1,0 +1,10 @@
+node_modules
+.next
+.env
+.DS_nano .gitignore
+rm -rf node_modules .next
+
+nano .gitignore
+
+
+
