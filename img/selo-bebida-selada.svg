@@ -1,0 +1,14 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0DA85"/>
+      <stop offset="1" stop-color="#D9B93F"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="28" fill="url(#g)" stroke="#BFA12F" stroke-width="3"/>
+  <g fill="#1B424E">
+    <path d="M128 56c-18 0-32 14-32 32v20h16v-20c0-9 7-16 16-16s16 7 16 16v20h16v-20c0-18-14-32-32-32z"/>
+    <path d="M88 116h80v68c0 8-6 14-14 14H102c-8 0-14-6-14-14v-68zm40 24a12 12 0 100 24 12 12 0 000-24z"/>
+  </g>
+  <text x="128" y="232" text-anchor="middle" font-family="Inter,Arial" font-size="18" fill="#1B424E">Bebida Selada®</text>
+</svg>

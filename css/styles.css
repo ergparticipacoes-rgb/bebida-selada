@@ -1,0 +1,784 @@
+/* =======================================================================
+   BEBIDA SELADA® v5.4.1 Icon Boost Premium - CSS BASE
+   Estética: "Ouro sobre Fumaça" + Ícones Premium Ampliados e Responsivos
+   ======================================================================= */
+
+/* ===== v5.2 Executive Refine Gold — Variáveis Globais ===== */
+:root {
+    --petro: #1B424E;
+    --gold: #EDC765;
+    --text-light: #F3F4F6;
+    --text-mid: #DAE3E7;
+    --cor-primaria: #1B424E; /* Azul-petróleo */
+    --cor-destaque: #EDC765; /* Dourado */
+    --cor-texto-claro: #F5F5F5;
+    --cor-fundo-claro: #E0E0E0;
+    --font-principal: 'Inter', sans-serif;
+    --borda-raio: 18px; /* Raios de borda: 18 px */
+    --sombra-padrao: 0 10px 30px rgba(0,0,0,.35); /* Sombreamento */
+    --transicao-padrao: 0.25s ease-in-out; /* Transição: 0.25s ease-in-out */
+    --max-largura: 1440px; /* Responsividade max 1440px */
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-principal);
+    color: var(--cor-texto-claro);
+    /* Fundo principal: Gradiente ouro sobre fumaça */
+    background: linear-gradient(135deg, var(--cor-primaria) 0%, #0A1C22 50%, #050E11 100%);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ===== v5.2 — Classes de Contraste e Legibilidade ===== */
+
+/* Texto dourado legível sobre fundo escuro */
+.gold-text {
+    color: var(--gold);
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.35);
+    font-weight: 700;
+}
+
+/* Texto claro em fundos escuros */
+.text-light { color: var(--text-light); }
+.text-mid { color: var(--text-mid); }
+
+/* Contraste AA automático */
+section, footer, header {
+    color: var(--text-light);
+}
+
+/* ===== v5.3 — Texto com Brilho Dourado Animado (INBS-001:2025) ===== */
+.shine-text {
+    background: linear-gradient(90deg, #CFAE52, #EDC765, #CFAE52);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shineX 3.5s linear infinite;
+}
+
+@keyframes shineX {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* Hero h1 com shine-text aprimorado */
+.hero h1.shine-text {
+    background-size: 200% auto;
+    animation: shineX 3.5s linear infinite;
+}
+
+/* Estrutura */
+.container {
+    max-width: var(--max-largura);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.secao {
+    padding: 92px 0; /* v5.2: +15% espaçamento */
+}
+
+.secao h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5em;
+    font-weight: 800;
+    color: var(--cor-destaque);
+}
+
+/* Tipografia */
+h1, h2, h3 {
+    font-weight: 800; /* Inter (400 – 800) */
+    color: var(--cor-destaque);
+    margin-bottom: 0.5em;
+}
+
+p {
+    font-weight: 400;
+}
+
+/* =======================================================================
+   1. Header/Menu
+   ======================================================================= */
+.header {
+    background-color: rgba(27, 66, 78, 0.9); /* Azul-petróleo semi-transparente */
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(237,199,101,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--cor-destaque);
+    text-decoration: none;
+}
+
+.nav-menu a {
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 600;
+    transition: color var(--transicao-padrao);
+}
+
+.nav-menu a:hover {
+    color: var(--cor-destaque);
+}
+
+/* =======================================================================
+   Botões (CTA) — v5.3b Layout Fix: Centralização Total
+   ======================================================================= */
+/* Padrão de Botões Uniformes e Centralizados */
+.btn, .btn.primary, .btn-principal, .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: .25px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid rgba(237,199,101, .25);
+    box-shadow: var(--sombra-padrao);
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.btn-principal, .btn.primary, .btn-primary {
+    background: linear-gradient(135deg, #e0b85a, #fff1b0);
+    color: var(--cor-primaria);
+    font-weight: 600;
+    border-color: rgba(237,199,101,.45);
+}
+
+/* ===== v5.3b — Hover Premium Uniforme ===== */
+.btn-principal:hover, .btn.primary:hover, .btn-primary:hover {
+    background: linear-gradient(135deg, #e4be5a, #fff2c1);
+    box-shadow: 0 12px 38px rgba(237, 199, 101, 0.45);
+    transform: translateY(-1px);
+    transition: all 0.3s ease-in-out;
+}
+
+/* ===== Botões dentro de containers centralizados ===== */
+.plan .btn, .modal .btn, .card .btn {
+    width: 100%;
+    max-width: 260px;
+    margin-top: 18px;
+    align-self: center;
+}
+
+.plan .btn + .btn, .modal .btn + .btn {
+    margin-top: 10px;
+}
+
+/* ===== v5.3d — Espaçamento de Botões (CTAs) ===== */
+.btn, .btn.primary {
+    margin-top: 12px;
+    margin-bottom: 4px;
+    align-self: center;
+}
+
+.btn + .btn {
+    margin-top: 10px;
+    margin-left: 0;
+}
+
+@media (min-width: 640px) {
+    .btn + .btn {
+        margin-left: 8px;
+        margin-top: 12px;
+    }
+}
+
+/* =======================================================================
+   2. Hero (Confiança que se vê)
+   ======================================================================= */
+.hero {
+    padding: 100px 0;
+    text-align: center;
+    /* Efeito de brilho sutil no canto para estética premium */
+    background: radial-gradient(circle at top right, rgba(237,199,101,0.15) 0%, transparent 50%); 
+}
+
+.hero-titulo {
+    font-size: 3.5rem;
+    margin-bottom: 0.25em;
+    text-transform: uppercase;
+}
+
+.hero-subtitulo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--cor-fundo-claro);
+    margin-bottom: 2em;
+}
+
+/* Campo de Input para a Auditoria */
+#simulador-auditoria input {
+    padding: 15px; 
+    border-radius: var(--borda-raio); 
+    border: none; 
+    width: 300px; 
+    margin-right: 15px; 
+    font-size: 1rem;
+    color: var(--cor-primaria); /* Cor do texto no input */
+}
+
+/* Estilo do QR Code (Simulado) - Hero QR: Borda dourada + efeito de varredura */
+.hero-qr {
+    width: 200px;
+    height: 200px;
+    margin: 30px auto;
+    background-color: var(--cor-texto-claro);
+    border: 5px solid var(--cor-destaque); /* Borda dourada */
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--sombra-padrao);
+}
+
+/* Efeito de Varredura Branco (Simulação) */
+.hero-qr::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.8), rgba(255,255,255,0.1));
+    animation: varredura 3s infinite linear;
+}
+
+@keyframes varredura {
+    0% { top: -50px; }
+    50% { top: 250px; }
+    100% { top: -50px; }
+}
+
+/* =======================================================================
+   4. Planos de Certificação
+   ======================================================================= */
+#planos {
+    background-color: rgba(0,0,0,0.2); /* Fundo sutil para contraste */
+}
+
+.planos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card-plano {
+    background-color: var(--cor-primaria);
+    border-radius: var(--borda-raio);
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--sombra-padrao);
+    border: 1px solid rgba(237,199,101,.1);
+    transition: transform var(--transicao-padrao);
+}
+
+/* ===== v5.2 — Destaque de Planos ===== */
+.card-plano:hover, .plan-card:hover, .plan:hover {
+    box-shadow: 0 16px 40px rgba(237, 199, 101, 0.15);
+    border-color: rgba(237, 199, 101, 0.35);
+    transform: translateY(-5px);
+    transition: all 0.35s ease;
+}
+
+.card-plano h3 {
+    color: var(--cor-destaque);
+    margin-bottom: 15px;
+    font-size: 1.7rem;
+}
+
+.card-plano ul {
+    list-style: none;
+    margin: 20px 0;
+    text-align: left;
+    color: var(--cor-fundo-claro);
+    padding-left: 1.5em; /* Espaçamento para o bullet customizado */
+}
+
+/* Bullet Customizado Dourado */
+.card-plano ul li::before {
+    content: '✓';
+    color: var(--cor-destaque);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.5em;
+}
+
+/* ===== v5.3 — Microcopy e Pequenos Textos ===== */
+.microcopy, .micro {
+    font-size: 12.5px;
+    color: var(--text-mid);
+    opacity: .9;
+    line-height: 1.5;
+}
+
+/* ===== v5.3 — Títulos de Seção com Autoridade ===== */
+section h2.center {
+    font-weight: 700;
+    color: var(--gold);
+    text-shadow: 0 0 1px rgba(0, 0, 0, .35);
+}
+
+/* ===== v5.3d — CONTAINERS COM RESPIRO UNIFORME ===== */
+.card, .plan, .modal-content-wrapper, .audit-details, .audit-footer {
+    padding: clamp(24px, 4vw, 48px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    background-clip: padding-box;
+}
+
+/* Hero section balance */
+.hero .inner {
+    padding: clamp(32px, 5vw, 72px) 0;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Melhor respiro dentro dos textos */
+.card p, .plan p, .modal-content-wrapper p, .lead {
+    line-height: 1.75;
+    margin-bottom: 18px;
+}
+
+/* Espaçamento entre títulos e parágrafos */
+.card h2, .card h3, .plan h3, .modal-content-wrapper h3, .modal-content-wrapper h2 {
+    margin-bottom: 14px;
+}
+
+section h2, section h3, .micro {
+    margin-bottom: 20px;
+}
+
+/* Margem interna do modal */
+.modal-content-wrapper {
+    max-width: 620px;
+    width: 100%;
+    margin: auto;
+}
+
+/* ===== Stack e containers centralizados ===== */
+.stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.center, .wrap.center, .card.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Corrige deslocamento visual em MacBook */
+.vh-mobile, .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ===== v5.3d — Modal de Resultado com Respiro Premium ===== */
+#auditResult {
+    text-align: center;
+    padding: clamp(28px, 5vw, 60px);
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(24,33,38,.96), rgba(15,21,24,.98));
+    box-shadow: 0 0 60px rgba(0,0,0,.4);
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+#auditResult h3 {
+    font-size: 28px;
+    letter-spacing: .3px;
+}
+
+#auditResult .lead {
+    color: var(--text-mid);
+    line-height: 1.7;
+    font-weight: 400;
+    max-width: 520px;
+    margin: 0 auto 24px;
+}
+
+#auditResult ul.audit-details {
+    list-style: none;
+    margin: 0 auto 24px;
+    padding: 0;
+    max-width: 480px;
+}
+
+#auditResult ul.audit-details li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(237,199,101,.12);
+}
+
+#auditResult ul.audit-details li:last-child {
+    border-bottom: none;
+}
+
+#auditResult .micro {
+    margin-top: 12px;
+    font-size: 13px;
+    opacity: .8;
+}
+
+/* CTAs uniformes dentro do modal */
+#auditResult button.btn, #closeAudit {
+    display: block;
+    width: 100%;
+    max-width: 260px;
+    margin: 24px auto 0;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all .3s ease;
+}
+
+#auditResult button.btn:hover, #closeAudit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(237,199,101,.35);
+}
+
+/* ===== v5.3d — Respiro do Modal e Preloader ===== */
+.verification-preloader {
+    padding: 36px 28px;
+}
+
+.modal .box {
+    padding: clamp(32px, 5vw, 60px);
+}
+
+.modal-content-wrapper p {
+    margin-bottom: 20px;
+}
+
+.audit-status, .audit-details, .audit-footer {
+    margin-bottom: 24px;
+}
+
+.audit-details ul li {
+    padding: 14px 0;
+}
+
+/* Animações para o modal de resultado */
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 16px rgba(237,199,101,.6));
+    }
+    50% {
+        filter: drop-shadow(0 0 28px rgba(237,199,101,.9));
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== v5.3c — Ícones de Verificação com Entrada Suave ===== */
+.verification-phase .icon {
+    font-size: 52px;
+    margin-bottom: 18px;
+    animation: fadeIn .4s ease both;
+    filter: drop-shadow(0 0 8px rgba(237,199,101,.35));
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===== v5.2 — Toast Elegante ===== */
+.toast {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 9999;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font: 600 14px/1.3 'Inter', sans-serif;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .35);
+    border: 1px solid rgba(255, 255, 255, .08);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast-success {
+    background: rgba(34, 197, 94, .1);
+    border-color: rgba(34, 197, 94, .35);
+    color: #eaffef;
+}
+
+/* =======================================================================
+   9. Rodapé
+   ======================================================================= */
+footer {
+    padding: 60px 0; 
+    background-color: #102A33;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* CTA WhatsApp em verde para destaque */
+footer .btn-principal {
+    background-color: #25D366; 
+    color: white;
+    border-color: rgba(37, 211, 102, 0.25);
+}
+
+footer .btn-principal:hover {
+    background-color: #128C7E; /* Tom mais escuro no hover */
+    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+}
+
+/* =======================================================================
+   Responsividade (Responsividade total: min 360px → max 1440px)
+   ======================================================================= */
+/* ===== v5.3d — Padding vertical em telas médias/grandes ===== */
+@media (min-width: 1024px) {
+    section {
+        padding-block: clamp(80px, 10vh, 120px);
+    }
+    .card, .plan {
+        margin-block: 28px;
+    }
+}
+
+/* ===== v5.2/v5.3d — Legibilidade Mobile ===== */
+@media (max-width: 640px) {
+    h1 { font-size: clamp(1.6rem, 6vw, 2rem); }
+    h2 { font-size: clamp(1.4rem, 5vw, 1.8rem); }
+    .lead, p { font-size: 1rem; line-height: 1.6; }
+    
+    .plan-card, .plan, .card-plano {
+        font-size: 0.95rem;
+    }
+    
+    .btn, .btn-primary, .btn-principal {
+        min-height: 44px;
+        padding: 12px 18px;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-titulo {
+        font-size: 3rem;
+    }
+    
+    .hero-subtitulo {
+        font-size: 1.3rem;
+    }
+    
+    .secao {
+        padding: 69px 0; /* v5.2: +15% de 60px */
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+    }
+
+    .nav-menu {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .nav-menu a {
+        margin: 0 10px 5px 10px;
+        display: inline-block;
+    }
+    
+    .hero-titulo {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitulo {
+        font-size: 1.1rem;
+    }
+    
+    #simulador-auditoria input {
+        display: block;
+        width: 90%;
+        margin: 0 auto 15px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-titulo {
+        font-size: 2rem;
+    }
+    
+    .secao h2 {
+        font-size: 2rem;
+    }
+
+    .btn-principal {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== GOLDEN SWEEP EFFECT — v5.4 FINAL ===== */
+.qr-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.qr-sweep {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.4) 20%,
+        rgba(237,199,101,0.6) 50%,
+        rgba(255,255,255,0.4) 80%,
+        rgba(255,255,255,0) 100%
+    );
+    opacity: 0;
+    transform: translateY(-120%);
+    mix-blend-mode: screen;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.qr-wrapper.scanning .qr-sweep {
+    animation: sweepDown 3.8s cubic-bezier(.45,.05,.55,.95) forwards;
+}
+
+@keyframes sweepDown {
+    0% { opacity: 0; transform: translateY(-120%); }
+    10% { opacity: 1; }
+    45% { transform: translateY(0%); }
+    55% { transform: translateY(12%); }
+    70% { transform: translateY(0%); }
+    100% { opacity: 0; transform: translateY(120%); }
+}
+
+.qr-wrapper.scanning::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.25) 20%,
+        rgba(237,199,101,0.45) 50%,
+        rgba(255,255,255,0.25) 80%,
+        rgba(255,255,255,0) 100%
+    );
+    mix-blend-mode: screen;
+    opacity: 0;
+    z-index: 2;
+    animation: sweepUp 3.8s cubic-bezier(.45,.05,.55,.95) forwards;
+}
+
+@keyframes sweepUp {
+    0% { opacity: 0; transform: translateY(120%); }
+    10% { opacity: 1; }
+    45% { transform: translateY(0%); }
+    55% { transform: translateY(-12%); }
+    70% { transform: translateY(0%); }
+    100% { opacity: 0; transform: translateY(-120%); }
+}
+
+/* ===== ICON BOOST PREMIUM — KIT FÍSICO OFICIAL ===== */
+#estabelecimento .grid-3 .icon {
+    width: clamp(72px, 8vw, 92px);
+    height: clamp(72px, 8vw, 92px);
+    font-size: clamp(44px, 5vw, 54px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background: radial-gradient(circle at 40% 40%, rgba(237,199,101,.3), rgba(27,66,78,0.8));
+    box-shadow:
+        inset 0 0 18px rgba(237,199,101,.25),
+        0 4px 16px rgba(0,0,0,.35);
+    color: var(--gold);
+    border: 1.2px solid rgba(237,199,101,.45);
+    margin-bottom: 14px;
+    transition: all .35s ease-in-out;
+}
+
+#estabelecimento .grid-3 .icon:hover {
+    transform: scale(1.12);
+    box-shadow:
+        0 10px 28px rgba(237,199,101,.35),
+        inset 0 0 18px rgba(255,255,255,.25);
+}
+
+/* ===== Espaçamento e alinhamento refinado ===== */
+#estabelecimento .grid-3 > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    text-align: center;
+    padding: 12px 8px;
+}
+
+/* FIM DO CSS */
